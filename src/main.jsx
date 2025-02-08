@@ -1,0 +1,10 @@
+import { createRoot } from "react-dom/client";
+import "./index.css";
+import React from "react";
+import AppRoutes from "./routes/AppRoutes";
+
+createRoot(document.getElementById("root")).render(
+  <React.StrictMode>
+    <AppRoutes />
+  </React.StrictMode>
+);
