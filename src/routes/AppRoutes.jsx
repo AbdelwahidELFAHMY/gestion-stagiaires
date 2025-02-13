@@ -15,13 +15,11 @@ const AppRoutes = () => {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/dashboard-stagiaire" element={<DashboardStagiaire />} />
 
         {/* Routes protégées */}
         <Route element={<ProtectedRoute allowedRoles={["ADMIN"]} />}>
           <Route path="/dashboard-admin" element={<DashboardAdmin />} />
-        </Route>
-        <Route element={<ProtectedRoute allowedRoles={["STAGIAIRE"]} />}>
-          <Route path="/dashboard-stagiaire" element={<DashboardStagiaire />} />
         </Route>
         <Route element={<ProtectedRoute allowedRoles={["RH"]} />}>
           <Route path="/dashboard-rh" element={<DashboardRH />} />
