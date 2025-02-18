@@ -110,7 +110,7 @@ const Messaging = () => {
       <div className="m-4 text-size14 flex items-center">
         <input
           type="text"
-          placeholder="Écrire un message..."
+          placeholder="Informer votre equipe..."
           value={newMessage}
           onChange={(e) => setNewMessage(e.target.value)}
           className="w-full p-2 border-1 border-gray-200 focus:ring-1 focus:ring-gray-300 focus:outline-none rounded"

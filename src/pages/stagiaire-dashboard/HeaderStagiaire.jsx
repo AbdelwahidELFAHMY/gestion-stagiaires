@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Bell, UserCircle, ChevronDown } from "lucide-react";
+import { UserCircle, ChevronDown } from "lucide-react";
 import { FaUserCog } from "react-icons/fa";
 import { BiLogOut } from "react-icons/bi";
 import { motion } from "framer-motion";

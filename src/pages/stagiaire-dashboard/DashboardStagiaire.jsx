@@ -36,7 +36,6 @@ const DashboardStagiaire = () => {
 
           <div className="flex-grow overflow-hidden">{renderComponent()}</div>
         
-          {/* Messagerie (non redimensionnable) */}
           <div className="flex border-l border-gray-200 bg-white h-full max-w-[300px] min-w-[300px] transition-all duration-500 ease-in-out">
           <Messaging />
           </div>

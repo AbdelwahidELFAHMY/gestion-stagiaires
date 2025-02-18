@@ -1,3 +1,5 @@
+import { BiSolidBarChartAlt2 } from "react-icons/bi";
+
 const StageProgress = ({ isSidebarOpen }) => {
   // Correction du paramètre
   const stage = {
@@ -14,9 +16,15 @@ const StageProgress = ({ isSidebarOpen }) => {
     },
     startDate: "2025-01-01",
     endDate: "2025-04-01",
-    progress: 50,
+    progress: 70,
     ListTaches: [
       {
+        id: 1,
+        description: "Analyse des besoins",
+        status: "Terminé",
+        progress: 100,
+        duration: 5,
+      },{
         id: 1,
         description: "Analyse des besoins",
         status: "Terminé",
@@ -27,7 +35,21 @@ const StageProgress = ({ isSidebarOpen }) => {
         id: 2,
         description: "Développement du backend",
         status: "En cours",
+        progress: 20,
+        duration: 15,
+      },
+      {
+        id: 2,
+        description: "Développement du backend",
+        status: "En cours",
         progress: 60,
+        duration: 15,
+      },
+      {
+        id: 2,
+        description: "Développement du backend",
+        status: "En cours",
+        progress: 30,
         duration: 15,
       },
       {
@@ -130,7 +152,11 @@ const StageProgress = ({ isSidebarOpen }) => {
         }`}
       >
         <div className="grid grid-cols-2 p-4">
-          <h3 className="font-semibold font-maFont">📊 Progression Achevée</h3>
+          <h3 className="font-semibold font-maFont justify-center">
+            {" "}
+            <BiSolidBarChartAlt2 className="text-gray-600 mr-2 text-2xl inline" />{" "}
+            Progression Achevée
+          </h3>
           <div className="w-full bg-gray-300 rounded-md h-4 relative">
             <div
               className="bg-blue-500 h-4 rounded-md"

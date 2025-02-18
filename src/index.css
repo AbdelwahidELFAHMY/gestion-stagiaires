@@ -8,6 +8,7 @@
   --text-size12: 12px;
   --text-size14: 14px;
   --breakpoint-3xl: 1920px;
+  --shadow-glow: 0px 0px 50px rgba(255, 255, 255, 0.2);
   --color-avocado-100: oklch(0.99 0 0);
   --color-avocado-200: oklch(0.98 0.04 113.22);
   --color-avocado-300: oklch(0.94 0.11 115.03);
