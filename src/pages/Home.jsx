@@ -1,4 +1,3 @@
-import React from 'react';
 import Navbar from '../components/navbar';
 import { motion } from 'framer-motion';
 import { DeskIllustration } from '../assets/Illustration';
@@ -12,8 +11,8 @@ const Star = ({ x, y, size, delay }) => (
     fill="white"
     initial={{ opacity: 0.3, scale: 0.4 }}
     animate={{
-      opacity: [0.3, 0.7, 0.3],
-      scale: [0.3, 0.4, 0.3],
+      opacity: [0.3, 0.9, 0.3],
+      scale: [0.3, 0.32, 0.3],
       rotate: [0, 10, -10, 0],
     }}
     transition={{
@@ -26,15 +25,78 @@ const Star = ({ x, y, size, delay }) => (
   </motion.svg>
 );
 
+
 // Composant pour le fond étoilé
 const StarsBackground = () => {
   const stars = Array.from({ length: 100 }, (_, i) => ({
     id: i,
     x: Math.random() * 100 + '%',
     y: Math.random() * 100 + '%',
-    size: Math.random() * 20 + 2 + 'px',
+    size: Math.random() * 15 + 'px',
     delay: Math.random() * 3,
   }));
+  
+  // Composant pour les cartes de fonctionnalités avec animation au scroll
+  const FeatureCard = ({ icon, title, description, index }) => {
+    const ref = useRef(null);
+    const isInView = useInView(ref, { once: true, margin: "-100px 0px" });
+    
+    return (
+      <motion.div
+        ref={ref}
+        className="flex flex-col items-center text-center bg-white p-8 rounded-xl shadow-xl border border-gray-100 hover:shadow-2xl transition-all duration-500"
+        initial={{ opacity: 0, y: 50 }}
+        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+        transition={{ duration: 0.6, delay: index * 0.2 }}
+        whileHover={{ y: -8, transition: { duration: 0.3 } }}
+      >
+        <div className="bg-gradient-to-br from-indigo-600 to-blue-700 p-4 rounded-full mb-6 shadow-lg">
+          {icon}
+        </div>
+        <h3 className="text-2xl font-bold text-gray-800 mb-4">{title}</h3>
+        <p className="text-gray-600">{description}</p>
+      </motion.div>
+    );
+  };
+  
+  // Particules flottantes pour l'arrière-plan
+  const Particles = () => {
+    const particles = Array.from({ length: 20 }, (_, i) => ({
+      id: i,
+      x: Math.random() * 100 + '%',
+      y: Math.random() * 100 + '%',
+      size: Math.random() * 8 + 2,
+    }));
+  
+    return (
+      <div className="absolute inset-0 overflow-hidden">
+        {particles.map((particle) => (
+          <motion.div
+            key={particle.id}
+            className="absolute rounded-full bg-white"
+            style={{
+              top: particle.y,
+              left: particle.x,
+              width: particle.size,
+              height: particle.size,
+              opacity: 0.2,
+            }}
+            animate={{
+              y: ["-20px", "20px", "-20px"],
+              x: ["10px", "-10px", "10px"],
+              opacity: [0.1, 0.3, 0.1],
+            }}
+            transition={{
+              duration: 8 + Math.random() * 10,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: Math.random() * 5,
+            }}
+          />
+        ))}
+      </div>
+    );
+  };
 
   return (
     <div className="absolute top-0 h-2/3 inset-0 overflow-hidden">
@@ -55,24 +117,83 @@ const SvgIllustration = () => (
   </svg>
 );
 
+const WaveIllustration = () => (
+  <div className="absolute bottom-0 left-0 w-full overflow-hidden z-10">
+    <svg className="w-full" viewBox="0 0 1440 320" preserveAspectRatio="none">
+      <motion.path
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 0.2, y: 0 }}
+        transition={{ duration: 1.5, delay: 0.5 }}
+        fill="#ffffff"
+        fillOpacity="0.3"
+        d="M0,192L48,208C96,224,192,256,288,245.3C384,235,480,181,576,165.3C672,149,768,171,864,192C960,213,1056,235,1152,218.7C1248,203,1344,149,1392,122.7L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
+      ></motion.path>
+      <motion.path
+        initial={{ opacity: 0, y: 80 }}
+        animate={{ opacity: 0.5, y: 0 }}
+        transition={{ duration: 1.8, delay: 0.8 }}
+        fill="#ffffff"
+        fillOpacity="0.2"
+        d="M0,96L48,128C96,160,192,224,288,224C384,224,480,160,576,138.7C672,117,768,139,864,154.7C960,171,1056,181,1152,165.3C1248,149,1344,107,1392,85.3L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
+      ></motion.path>
+    </svg>
+  </div>
+);
+
+
+
+
+const AnimatedButton = ({ href, primary, children }) => (
+  <motion.a
+    href={href}
+    className={`inline-flex items-center justify-center shadow-glow ${
+      primary
+        ? "bg-gradient-to-r from-indigo-800 to-blue-700 text-white"
+        : "bg-transparent border-2 border-white hover:bg-white hover:text-indigo-700 text-white"
+    } py-2 px-4 rounded-lg shadow-lg transition duration-300 font-medium text-size13 z-20`}
+    whileHover={{ 
+      scale: 1.01, 
+      boxShadow: "0 10px 25px -5px rgba(66, 85, 255, 0.4)" 
+    }}
+    whileTap={{ scale: 0.98 }}
+  >
+    {children}
+    <svg
+      className="ml-2 w-5 h-5"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+        d="M14 5l7 7m0 0l-7 7m7-7H3"
+      ></path>
+    </svg>
+  </motion.a>
+);
+
 function Home() {
   return (
     <>
-      <div className="h-screen relative overflow-hidden bg-gradient-to-r from-blue-900 via-blue-700 to-blue-500 text-white">
-  
+      <div className="h-screen relative overflow-hidden bg-gradient-to-br from-blue-950 via-blue-950 to-blue-900 text-white">
         <Navbar/>
-        <StarsBackground /> {/* Ajout des étoiles animées */}
+        <StarsBackground /> 
         <div className="max-w-screen-xl mx-auto px-6 sm:px-10 lg:px-10 lg:py-20">
+          
+          
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
               <motion.h1
-                className="text-5xl font-extrabold sm:text-6xl"
+                className="text-4xl font-extrabold sm:text-6xl"
                 initial={{ opacity: 0, y: -50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1 }}
               >
-                <span className="block">Simplifiez la gestion</span>
-                <span className="block text-indigo-300">des stagiaires professionnels</span>
+                <span className="block">Simplifiez la gestion de</span>
+                <span className="block text-indigo-300"> vos stagiaires</span>
               </motion.h1>
               <motion.p
                 className="text-lg sm:text-xl text-gray-200 z-30"
@@ -80,34 +201,31 @@ function Home() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1.2, delay: 0.2 }}
               >
-                Notre plateforme vous permet de suivre, gérer et évaluer vos stagiaires en toute simplicité.
-                Optimisez les performances des équipes et créez une expérience professionnelle enrichissante.
+                Propulsez votre programme de stages vers l'excellence avec une plateforme intelligente qui automatise le suivi, optimise l'apprentissage et maximise le potentiel de chaque stagiaire.
               </motion.p>
-              <div className="flex space-x-4">
-                <motion.a
-                  href="#features"
-                  className="inline-block bg-indigo-600 hover:bg-indigo-500 text-white py-3 px-6 rounded-lg shadow-glow transition duration-300 transform hover:scale-105 z-30"
-                  whileHover={{ scale: 1.1 }}
-                >
-                  Découvrir les fonctionnalités
-                </motion.a>
-                <motion.a
-                  href="#contact"
-                  className="inline-block shadow-glow bg-transparent border-2 border-white hover:bg-white hover:text-indigo-700 text-white py-3 px-6 rounded-lg transition duration-300 transform hover:scale-105 z-30"
-                  whileHover={{ scale: 1.1 }}
-                >
-                  Contactez-nous
-                </motion.a>
-              </div>
+              
+            <motion.div 
+                className="flex flex-wrap gap-4 pt-4"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.5 }}
+              >
+                <AnimatedButton href="#features" primary>
+                  Découvrir nos solutions
+                </AnimatedButton>
+                <AnimatedButton href="#contact">
+                  Demander une démo
+                </AnimatedButton>
+              </motion.div>
             </div>
-            <SvgIllustration />
             <DeskIllustration />
           </div>
         </div>
-      </div>
+        <WaveIllustration />
+      </div>  
 
       {/* Features Section */}
-      <div className="bg-gray-100 py-16" id="features">
+      <div className="bg-custom-600 to-blue-900 py-16" id="features">
         <div className="max-w-screen-xl mx-auto px-6 sm:px-12 lg:px-16">
           <h2 className="text-4xl font-bold text-center text-blue-900 mb-12">Fonctionnalités clés</h2>
           <div className="grid md:grid-cols-3 gap-12">

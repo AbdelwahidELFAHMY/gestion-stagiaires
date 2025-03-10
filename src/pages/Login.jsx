@@ -22,6 +22,9 @@ const Login = () => {
       const { "access-token": accessToken, "refresh-token": refreshToken } =
         response.data;
 
+        console.log(accessToken,"       ",refreshToken)
+
+
       // Store in localStorage
       localStorage.setItem("accessToken", accessToken);
       localStorage.setItem("refreshToken", refreshToken);

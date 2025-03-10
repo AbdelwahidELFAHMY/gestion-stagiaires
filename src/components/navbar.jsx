@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import Logo from "../assets/logo";
 
 const Navbar = () => {
   return (
@@ -8,7 +9,7 @@ const Navbar = () => {
           
           {/* Logo */}
           <div className="text-lg font-bold flex-1 z-50">
-            Gestion Stagiaires
+            <Logo/>
           </div>
 
           {/* Navigation */}
