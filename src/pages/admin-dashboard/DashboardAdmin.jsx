@@ -1,75 +1,79 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Header from "./Header";
-import ActionModal from "./ActionModal";
-import TechnicalStats from "./technicalStats";
-import Performance from "./Performance";
-import Scalability from "./Scalability";
-import Maintenance from "./Maintenance";
-import NotFoundPage from "../NotFoundPage";
-import Dashboard from "./Dashboard";
+import Performance from "./performance/Performance";
+import Dashboard from "./dashboard/Dashboard";
 import AdminSidebar from "./AdminSidebar";
+import Companies from "./partenaires/Companies";
+import StatistiquesSysteme from "./statistiques_system/StatistiquesSysteme";
+import Maintenance from "./maintenance/Maintenance";
+import Parameters from "./Parameters";
+import Logout from "../../components/Logout";
 
 function DashboardAdmin() {
-  const [activeTab, setActiveTab] = useState("system-stats");
-  const [showActionModal, setShowActionModal] = useState(false);
-  const [modalContent, setModalContent] = useState({ title: "", message: "" });
+  const [activeTab, setActiveTab] = useState("dashboard");
+  const [isDarkMode, setIsDarkMode] = useState(() => {
+    return localStorage.getItem("isDarkMode") === "true";
+  });
+  const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
 
-  
-  const handleAction = (action, details) => {
-    setModalContent({
-      title: "Action Confirmation",
-      message: `Are you sure you want to ${action.toLowerCase()} ${details}?`,
-    });
-    setShowActionModal(true);
-  };
+  const handleCancelLogoutModale = ()=>{
+    setIsLogoutModalOpen(false);
+  }
 
-  
+  useEffect(() => {
+    localStorage.setItem("isDarkMode", isDarkMode);
+    if (isDarkMode) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [isDarkMode]);
+
 
   const renderContent = () => {
     switch (activeTab) {
       case "dashboard":
-        return <Dashboard handleAction={handleAction} />;
-      case "technical-stats":
-        return <TechnicalStats handleAction={handleAction} />;
+        return <Dashboard />;
+      case "partenaires":
+        return <Companies />;
+      case "Statistiques Systeme":
+        return <StatistiquesSysteme />;
       case "performance":
-        return <Performance handleAction={handleAction} />;
-      case "scalabilite":
-        return <Scalability handleAction={handleAction} />;
+        return <Performance  />;
       case "maintenance":
-        return <Maintenance handleAction={handleAction} />;
+        return <Maintenance  />;
+      case "parametres":
+        return <Parameters  />;
       default:
-        return <NotFoundPage/>;
+        return <Dashboard />;
     }
   };
 
   return (
-    <div className="flex h-screen">
-      {/* Sidebar - Largeur fixe */}
+    <div className={`flex h-screen ${isDarkMode ? "dark" : ""}`}>
       <AdminSidebar
         activeTab={activeTab}
         setActiveTab={setActiveTab}
-        className="h-screen bg-gradient-to-b from-gray-950 to-gray-900 max-w-3/16"
+        isDarkMode={isDarkMode}
+        setIsLogoutModalOpen={setIsLogoutModalOpen}
       />
 
-      {/* Conteneur principal - Prend le reste de l'espace */}
-      <div className="flex-1 flex flex-col bg-gray-800 ">
-        {/* Header - Prend la largeur restante */}
-        <Header/>
+      <div className="flex-1 flex flex-col bg-white">
+        <Header
+          isDarkMode={isDarkMode}
+          setIsDarkMode={setIsDarkMode}
+          activeTab={activeTab}
+        />
 
-        {/* Contenu principal - Scrollable */}
-        <main className=" border-t-thin border-gray-500 flex-1 overflow-y-auto overflow-x-hidden">
+        <main
+          className={`${
+            isDarkMode ? "dark scrollbar-thin-dark" : " scrollbar-thin"
+          } dark:bg-gray-900 flex-1 overflow-y-auto overflow-x-hidden `}
+        >
           {renderContent()}
         </main>
       </div>
-
-      {/* Modal d'action */}
-      {showActionModal && (
-        <ActionModal
-          title={modalContent.title}
-          message={modalContent.message}
-          setShowActionModal={setShowActionModal}
-        />
-      )}
+      <Logout isLogoutModalOpen={isLogoutModalOpen} onCancel={handleCancelLogoutModale}/>
     </div>
   );
 }

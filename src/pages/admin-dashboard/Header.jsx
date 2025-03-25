@@ -1,59 +1,68 @@
-import React from "react";
-import { FaBell, FaCog, FaSearch } from "react-icons/fa"; // Importation des icônes
+import { AiOutlineRight } from "react-icons/ai";
+import { FaBell, FaMoon, FaSun } from "react-icons/fa";
 
-function Header() {
+export default function Header({ isDarkMode, setIsDarkMode, activeTab }) {
+
+  const admin ={ name: "John Doe", avatar: "https://i.pravatar.cc/40" };
   return (
-    <header className="flex items-center justify-between bg-gray-700 p-4">
-      {/* Logo & Nom de l'entreprise */}
+    <header
+      className={`flex items-center justify-between dark:bg-gray-900 bg-white pl-2 pr-6 py-3 border-b dark:border-gray-500 border-gray-200 ${
+        isDarkMode ? "dark" : "bg-white"
+      }`}
+    >
       <div className="flex items-center gap-2">
-        <img src="/logo.png" alt="Logo" className="h-10 w-10 object-contain" />
-        <span className="text-lg font-semibold text-gray-100">StageFlow</span>
+        <span className="text-size13 font-semibold text-gray-800 dark:text-gray-400 flex justify-center items-center">
+          <AiOutlineRight size={13} />
+          <AiOutlineRight size={13} />
+          &nbsp;
+          &nbsp;
+          {activeTab.toUpperCase()}
+        </span>
       </div>
 
-      {/* Champ de recherche */}
-      <div className="flex-1 max-w-md mx-4 relative">
-        <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500" />
-        <input
-          type="text"
-          placeholder="Rechercher un stagiaire..."
-          className="w-full pl-10 pr-4 py-2 border-thin border-gray-300 text-size12  rounded-xs focus:outline-none focus:ring-1 focus:ring-secondary transition-all ease-in-out duration-300"
-        />
-      </div>
-
-      {/* Notifications et Profil utilisateur */}
-      <div className="flex items-center gap-4">
-        {/* Icône de notifications */}
-        <div className="relative">
-          <FaBell
-            className="text-gray-600 cursor-pointer hover:text-blue-500 transition duration-300 ease-in-out"
-            size={20}
-            aria-label="Notifications"
-          />
-          <span className="absolute top-0 right-0 bg-red-500 text-white text-xs rounded-full px-1">3</span>
+      <div className="flex items-center gap-5">
+        {/* Wrapper div around the button */}
+        <div
+          className="relative cursor-pointer flex items-center justify-center w-14 h-7  bg-indigo-900 dark:bg-gray-400 rounded-full transition-all ease-in-out duration-500"
+          onClick={() => setIsDarkMode(!isDarkMode)}
+        >
+          {/* Button that will translate inside the div */}
+          <button
+            className={`cursor-pointer absolute w-6 h-6 rounded-full transition-transform duration-500 ease-in-out ${
+              isDarkMode ? "-translate-x-3" : "bg-gray-500  translate-x-3"
+            }`}
+          >
+            {isDarkMode ? (
+              <FaSun size={20} style={{ color: "yellow" }} />
+            ) : (
+              <FaMoon size={20} style={{ color: "#F5F5F5" }} />
+            )}
+          </button>
         </div>
 
-        {/* Profil utilisateur avec badge Admin */}
-        <div className="flex items-center gap-2">
+        <div className="relative">
+          <FaBell
+            className="dark:text-gray-400 text-gray-600 cursor-pointer hover:text-blue-500 transition duration-300 ease-in-out"
+            size={22}
+          />
+          <span className="absolute bottom-2.5 left-3 bg-red-500 text-white text-xs rounded-full px-1">
+            3
+          </span>
+        </div>
+        <div className="flex items-center gap-4">
           <img
-            src="/user-avatar.jpg"
+            src={admin.avatar}
             alt="User"
             className="h-10 w-10 rounded-full object-cover"
           />
           <div className="flex flex-col">
-            <span className="text-gray-800 font-medium">Admin</span>
-            <span className="text-sm text-gray-500">StageFlow Administrator</span>
+            <span className="text-gray-700 dark:text-gray-300 font-medium">{admin.name}</span>
+            <span className="text-size12 font-semibold dark:text-neutral-400 text-gray-600">
+              StageFlow Administrator
+            </span>
           </div>
         </div>
-
-        {/* Icône de paramètres */}
-        <FaCog
-          className="text-gray-600 cursor-pointer hover:text-blue-500 transition duration-300 ease-in-out"
-          size={20}
-          aria-label="Settings"
-        />
       </div>
     </header>
   );
 }
-
-export default Header;

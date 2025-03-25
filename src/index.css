@@ -2,7 +2,7 @@
 
 @plugin "tailwindcss-animate";
 
-@custom-variant dark (&:is(.dark *));
+@custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
   --font-maFont: "Poppins", "sans-serif";
@@ -34,9 +34,15 @@
 
 /* Personnalisation de la barre de défilement */
 .scrollbar-thin {
-  scrollbar-width: thin; /* Barre de défilement plus fine */
-  scrollbar-color: #b6b4b4 #f1eaea; /* Couleurs du thumb et du track */
+  scrollbar-width: thin;
+  scrollbar-color: #b8b8b8 #ffefef; 
 }
+
+.scrollbar-thin-dark {
+  scrollbar-width: thin;
+  scrollbar-color: #726f6f #2c2e3d; 
+}
+
 
 @layer utilities {
   .text-glow {

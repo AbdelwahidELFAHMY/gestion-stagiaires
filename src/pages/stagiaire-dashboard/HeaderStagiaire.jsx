@@ -21,13 +21,10 @@ const HeaderStagiaire = () => {
     setIsLogoutModalOpen(true);
   };
 
-  const handleConfirmLogout = () => {
-    setIsLogoutModalOpen(false); 
-  };
-
-  const handleCancelLogout = () => {
+  const handleCloseLogoutModale=()=>{
     setIsLogoutModalOpen(false);
-  };
+  }
+
 
   const handleProfileClick = () => {
     setIsProfilModalOpen(true);
@@ -132,9 +129,8 @@ const HeaderStagiaire = () => {
       </div>
 
       <Logout
-        isOpen={isLogoutModalOpen}
-        onConfirm={handleConfirmLogout}
-        onCancel={handleCancelLogout}
+        isLogoutModalOpen={isLogoutModalOpen}
+        onCancel={handleCloseLogoutModale}
       />
       <Profile
         isOpen={isProfilModalOpen}

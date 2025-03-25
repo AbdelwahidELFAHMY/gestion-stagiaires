@@ -1,61 +1,49 @@
 import { NavLink } from "react-router-dom";
 import Logo from "../assets/logo";
 
+const linkClasses = ({ isActive }) =>
+  ` transition duration-300 ${
+    isActive ? "text-indigo-300 font-semibold" : "text-white hover:text-indigo-300"
+  }`;
+
 const Navbar = () => {
   return (
-    <div className="top-0 left-0 w-full bg-transparent text-white">
-      <div className="max-w-screen-xl mx-auto px-10 pt-7">
-        <div className="flex justify-between items-center ">
+    <div className="w-full bg-transparent text-white">
+      <div className="font-maFont text-size12 max-w-screen-xl mx-auto px-10 pt-7">
+        <div className="flex justify-between items-center">
           
           {/* Logo */}
-          <div className="text-lg font-bold flex-1 z-50">
-            <Logo/>
+          <div className="text-lg font-bold z-50">
+            <Logo />
           </div>
 
           {/* Navigation */}
-          <div className=" space-x-6 hidden md:flex flex-1 justify-center z-50">
-            <NavLink 
-              to="/" 
-              className={({ isActive }) => 
-                isActive 
-                  ? " text-indigo-300 border-b-2 border-indigo-300 pb-1 transition duration-300" 
-                  : "text-white hover:text-indigo-300 transition duration-300"
-              }
-            >
+          <nav className="hidden md:flex space-x-12 z-50">
+            <NavLink to="/" className={linkClasses}>
               Accueil
             </NavLink>
-
-            <NavLink 
-              to="/contact" 
-              className={({ isActive }) => 
-                isActive 
-                  ? "text-indigo-300 border-b-2 border-indigo-300 pb-1 transition duration-300" 
-                  : "text-white hover:text-indigo-300 transition duration-300"
-              }
-            >
-              Contact
+            <NavLink to="/contact" className={linkClasses}>
+            Nos Services
             </NavLink>
-
-            <NavLink 
-              to="/about" 
-              className={({ isActive }) => 
-                isActive 
-                  ? "text-indigo-300 border-b-2 border-indigo-300 pb-1 transition duration-300" 
-                  : "text-white hover:text-indigo-300 transition duration-300"
-              }
-            >
+            <NavLink to="/about" className={linkClasses}>
+              Offres de Stage
+            </NavLink>
+            <NavLink to="/about" className={linkClasses}>
               À propos
             </NavLink>
-          </div>
+            <NavLink to="/contact" className={linkClasses}>
+              Contact
+            </NavLink>
+          </nav>
 
           {/* Bouton de connexion */}
-          <div className="flex-1 flex justify-end z-50">
-            <NavLink 
-              to="/login" 
-              className={({ isActive }) => 
-                isActive 
-                  ? "bg-gray-200 shadow-glow text-blue-900 px-4 py-2 rounded-lg font-semibold transition duration-300" 
-                  : "bg-white text-blue-900 px-4 py-2 rounded-lg font-semibold hover:bg-gray-200 transition duration-300"
+          <div className="z-50">
+            <NavLink
+              to="/login"
+              className={({ isActive }) =>
+                `px-4 py-2 rounded-lg text-size12 font-semibold transition duration-300 ${
+                  isActive ? "bg-gray-200 text-blue-900 shadow-md" : "bg-white text-blue-900 hover:bg-gray-200"
+                }`
               }
             >
               Se connecter

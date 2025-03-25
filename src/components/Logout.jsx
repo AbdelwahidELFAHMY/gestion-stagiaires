@@ -2,10 +2,14 @@ import { AiOutlineExclamationCircle } from "react-icons/ai";
 import { FaTimesCircle } from "react-icons/fa";
 import { RiLogoutBoxRLine } from "react-icons/ri";
 
-const Logout = ({ isOpen, onConfirm, onCancel }) => {
-  if (!isOpen) return null;
+const Logout = ({ isLogoutModalOpen, onCancel }) => {
+  if (!isLogoutModalOpen) return null;
 
-  return (
+  const handleConfirmLogout = () => {
+  };
+
+
+    return (
     <div className="fixed inset-0 bg-[rgba(0,0,0,0.4)] flex items-center justify-center z-50">
       <div className="bg-white p-6 rounded-lg shadow-lg max-w-sm w-full relative">
         {/* Icone de fermeture */}
@@ -47,7 +51,7 @@ const Logout = ({ isOpen, onConfirm, onCancel }) => {
               </span>
             </button>
             <button
-              onClick={onConfirm}
+              onClick={handleConfirmLogout}
               className="px-4 py-2 bg-red-500 cursor-pointer text-white rounded-lg hover:bg-red-600 transition"
             >
               <span className="flex items-center gap-2">

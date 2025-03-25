@@ -5,10 +5,11 @@ import AxiosInstance from '../../utils/axiosInstance';
 export const fetchTechStats = createAsyncThunk(
   'techStats/fetchTechStats',
   async () => {
-    const response = await AxiosInstance.get('systemStats');
+    const response = await AxiosInstance.get('/system/statistics');
     return response.data;
   }
 );
+
 
 const initialState = {
   cpuUsage: '0%',

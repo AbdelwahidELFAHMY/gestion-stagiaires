@@ -7,6 +7,7 @@ import DashboardAdmin from "../pages/admin-dashboard/DashboardAdmin.jsx";
 import DashboardStagiaire from "../pages/stagiaire-dashboard/DashboardStagiaire.jsx";
 import DashboardEncadrant from "../pages/encadrant-dashboard/DashboardEncadrant.jsx";
 import DashboardRH from "../pages/RH-dashboard/DashboardRH.jsx";
+import NotFoundPage from "../pages/NotFoundPage.jsx";
 
 const AppRoutes = () => {
   return (
@@ -17,6 +18,7 @@ const AppRoutes = () => {
         <Route path="/contact" element={<Contact />} />
           <Route path="/dashboard-admin" element={<DashboardAdmin />} />
           <Route path="/dashboard-stagiaire" element={<DashboardStagiaire />} />
+          <Route path="/*" element={<NotFoundPage />} />
 
         {/* Routes protégées */}
         <Route element={<ProtectedRoute allowedRoles={["RH"]} />}>

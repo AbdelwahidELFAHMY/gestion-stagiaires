@@ -10,7 +10,6 @@ const Login = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    console.log(username, password);
     try {
       const response = await axios.post(
         "http://localhost:8080/login",
@@ -21,7 +20,6 @@ const Login = () => {
       // Extract tokens from response
       const { "access-token": accessToken, "refresh-token": refreshToken } =
         response.data;
-
         console.log(accessToken,"       ",refreshToken)
 
 

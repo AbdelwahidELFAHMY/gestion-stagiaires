@@ -149,10 +149,9 @@ const AnimatedButton = ({ href, primary, children }) => (
     className={`inline-flex items-center justify-center shadow-glow ${
       primary
         ? "bg-gradient-to-r from-indigo-800 to-blue-700 text-white"
-        : "bg-transparent border-2 border-white hover:bg-white hover:text-indigo-700 text-white"
+        : "bg-transparent border-thin border-white hover:bg-white hover:text-indigo-700 text-white"
     } py-2 px-4 rounded-lg shadow-lg transition duration-300 font-medium text-size13 z-20`}
     whileHover={{ 
-      scale: 1.01, 
       boxShadow: "0 10px 25px -5px rgba(66, 85, 255, 0.4)" 
     }}
     whileTap={{ scale: 0.98 }}
