@@ -42,9 +42,7 @@ const ResponseTimeChart = () => {
   if (loading) {
     return (
       <div className="bg-white dark:bg-gray-800 dark:border-gray-600 border border-gray-200 shadow-md rounded-xl p-4 col-span-1 md:col-span-2 lg:col-span-4" style={{ paddingBottom: "2rem" }}>
-        <h3 className="text-lg mb-3 font-medium text-gray-800 dark:text-gray-300 text-center">
-          Évolution du temps de réponse
-        </h3>
+      
         <Skeleton />
       </div>
     );
