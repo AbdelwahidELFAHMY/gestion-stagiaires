@@ -1,25 +1,22 @@
 import { useState } from "react";
-import { FaEye, FaEdit, FaTrashAlt, FaSearch, FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import { FaEye, FaTrashAlt, FaSearch, FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { FiMoreHorizontal } from "react-icons/fi";
 import DeleteCompanyModal from "./DeleteCompanyModal";
 import ViewDetailsModal from "./ViewDetailsModal";
 
-// Fonction pour générer une couleur de fond aléatoire
-const getRandomColor = (() => {
-  const colorMap = new Map();
 
-  return (id) => {
-    if (!colorMap.has(id)) {
-      const letters = "0123456789ABCDEF";
-      let color = "#";
-      for (let i = 0; i < 6; i++) {
-        color += letters[Math.floor(Math.random() * 16)];
-      }
-      colorMap.set(id, color);
-    }
-    return colorMap.get(id);
-  };
-})();
+
+const dispatch = useDispatch();
+  const entreprises = useSelector((state) => state.entreprises.entreprises);
+  const loading = useSelector((state) => state.entreprises.loading);
+  const error = useSelector((state) => state.entreprises.error);
+
+  useEffect(() => {
+    dispatch(fetchEntreprises());
+  }, [dispatch]);
+
+  if (loading) return <p>Chargement...</p>;
+  if (error) return <p>Erreur: {error}</p>;
 
 // Données initiales des entreprises
 const initialCompanies = [
@@ -356,27 +353,7 @@ const initialCompanies = [
   },
 ];
 
-// Composant Toggle
-const Toggle = ({ isActive, onToggle }) => {
-  return (
-    <div className="flex items-center gap-2 text-size11">
-      <span className=" text-gray-600 dark:text-gray-400">No</span>
-      <div
-        className={`w-12 h-6 flex items-center rounded-full p-1 cursor-pointer ${
-          isActive ? "bg-blue-500" : "bg-gray-300"
-        }`}
-        onClick={onToggle}
-      >
-        <div
-          className={`bg-white w-4 h-4 rounded-full shadow-md transform transition-transform ${
-            isActive ? "translate-x-6" : "translate-x-0"
-          }`}
-        ></div>
-      </div>
-      <span className=" text-gray-600 dark:text-gray-400">Yes</span>
-    </div>
-  );
-};
+
 
 // Composant principal Companies
 const Companies = () => {
@@ -626,4 +603,44 @@ const Companies = () => {
   );
 };
 
+
 export default Companies;
+
+// Composant Toggle
+const Toggle = ({ isActive, onToggle }) => {
+  return (
+    <div className="flex items-center gap-2 text-size11">
+      <span className=" text-gray-600 dark:text-gray-400">No</span>
+      <div
+        className={`w-12 h-6 flex items-center rounded-full p-1 cursor-pointer ${
+          isActive ? "bg-blue-500" : "bg-gray-300"
+        }`}
+        onClick={onToggle}
+      >
+        <div
+          className={`bg-white w-4 h-4 rounded-full shadow-md transform transition-transform ${
+            isActive ? "translate-x-6" : "translate-x-0"
+          }`}
+        ></div>
+      </div>
+      <span className=" text-gray-600 dark:text-gray-400">Yes</span>
+    </div>
+  );
+};
+
+// Fonction pour générer une couleur de fond aléatoire
+const getRandomColor = (() => {
+  const colorMap = new Map();
+
+  return (id) => {
+    if (!colorMap.has(id)) {
+      const letters = "0123456789ABCDEF";
+      let color = "#";
+      for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+      }
+      colorMap.set(id, color);
+    }
+    return colorMap.get(id);
+  };
+})();

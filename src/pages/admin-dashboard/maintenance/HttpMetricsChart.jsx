@@ -44,7 +44,9 @@ const HttpMetricsChart = () => {
 
         const pieData = calculatePercentages(response.data);
         setPieData(pieData);
-        setLoading(false);
+        setTimeout(() => {
+          setLoading(false);
+        }, 1000); 
       } catch (error) {
         console.error("Erreur lors de la récupération des données:", error);
         setLoading(false);
@@ -166,13 +168,13 @@ const HttpMetricsChart = () => {
   if (loading) {
     return (
       <div className="px-6 grid grid-cols-1 md:grid-cols-2 gap-4">
-  <div className=" bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-xl p-6">
-    <Skeleton />
-  </div>
-  <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-xl p-6">
-    <Skeleton />
-  </div>
-</div>
+        <div className=" bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-xl p-6">
+          <Skeleton />
+        </div>
+        <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-xl p-6">
+          <Skeleton />
+        </div>
+      </div>
     );
   }
 
@@ -227,7 +229,7 @@ const HttpMetricsChart = () => {
             </ResponsiveContainer>
           )}
         </div>
-  
+
         {/* Deuxième graphique (PieChart) */}
         <div className="h-96 bg-gray-50 dark:bg-gray-700 border border-gray-100 dark:border-gray-500 p-4 rounded-lg">
           <h3 className="text-size15 text-center font-semibold text-gray-800 dark:text-gray-200 mb-4">

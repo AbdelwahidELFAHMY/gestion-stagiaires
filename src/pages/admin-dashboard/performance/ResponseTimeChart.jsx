@@ -41,12 +41,13 @@ const ResponseTimeChart = () => {
   
   if (loading) {
     return (
-      <div className="bg-white dark:bg-gray-800 dark:border-gray-600 border border-gray-200 shadow-md rounded-xl p-4 col-span-1 md:col-span-2 lg:col-span-4" style={{ paddingBottom: "2rem" }}>
-      
+      <div className="h-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-xl p-6">
+
         <Skeleton />
       </div>
     );
   }
+
 
   if (error) {
     return (

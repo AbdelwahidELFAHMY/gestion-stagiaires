@@ -27,7 +27,9 @@ const SystemStatus = () => {
         );
         setStatus({ needsMaintenance: false, urgency: "none" });
       } finally {
-        setLoading(false);
+        setTimeout(() => {
+          setLoading(false);
+        }, 1000); 
       }
     };
 
@@ -114,12 +116,13 @@ const SystemStatus = () => {
 
   if (loading) {
     return (
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="w-1/2 h-20 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-xl p-6">
-          <Skeleton />
+      <div className="px-6 pt-3 grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="flex flex-col space-y-4 w-full h-full">
+          <Skeleton className="flex-grow w-full h-full" />
         </div>
-        <div className="w-1/2 h-20 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-xl p-6">
-          <Skeleton />
+
+        <div className="flex flex-col space-y-4 w-full h-full">
+          <Skeleton className="flex-grow w-full h-full" />
         </div>
       </div>
     );

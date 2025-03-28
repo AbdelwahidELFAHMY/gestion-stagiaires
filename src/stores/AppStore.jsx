@@ -1,11 +1,15 @@
 import { configureStore } from '@reduxjs/toolkit';
-import techStatsReducer from './tech_stats_slices/techStatsSlice'; // Import correct
+import techStatsReducer from './tech_stats_slices/techStatsSlice'; 
 import weeklyStorageReducer from './tech_stats_slices/weeklyStorageSlice'
+import entrepriseReducer from './entreprises_slices/entreprisesSlice';
+
 
 const store = configureStore({
   reducer: {
-    techStats: techStatsReducer, // Assurez-vous que le nom correspond
+    techStats: techStatsReducer, 
     weeklyStorage: weeklyStorageReducer,
+    entreprises: entrepriseReducer,
+
   },
 });
 

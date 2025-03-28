@@ -1,14 +1,44 @@
+import { useEffect, useState } from "react";
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip } from "recharts";
-
-const data = [
-  { name: "Tech Solutions", value: 12, color: "#8b5cf6" },
-  { name: "Digital Agency", value: 8, color: "#c084fc" },
-  { name: "Innovative Systems", value: 5, color: "#a78bfa" },
-  { name: "Creative Design", value: 3, color: "#d8b4fe" },
-  { name: "Autres", value: 7, color: "#e9d5ff" },
-];
+import axiosInstance from "../../../utils/axiosInstance";
 
 const DistributionParEntreprise = () => {
+  const [data, setData] = useState([]); 
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  // Récupérer les données depuis l'API
+  useEffect(() => {
+    axiosInstance
+      .get("admin/entreprises/stagiaires_par_entreprise")
+      .then((response) => {
+        const transformedData = Object.entries(response.data).map(([name, value]) => ({
+          name,
+          value,
+          color: getRandomColor(), 
+        }));
+        setData(transformedData);
+        setLoading(false);
+      })
+      .catch((error) => {
+        setError(error.response.data.message || "Erreur est survenue lors de l'appel au backend");
+        setLoading(false);
+      });
+  }, []);
+
+  // Fonction pour générer des couleurs aléatoires
+  const getRandomColor = () => {
+    const letters = "0123456789ABCDEF";
+    let color = "#";
+    for (let i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  };
+
+  if (loading) return <p>Chargement...</p>;
+  if (error) return <p>{error}</p>;
+
   return (
     <div style={{ border: "1px solid #ccc", borderRadius: "8px", padding: "16px", width: "100%", maxWidth: "500px", margin: "auto" }}>
       <h2 style={{ fontSize: "18px", marginBottom: "16px", textAlign: "center" }}>Distribution par entreprise</h2>

@@ -3,11 +3,10 @@ import {
   LayoutDashboard,
   Building2,
   PieChart,
-  TrendingUp,
-  Layers,
   ShieldCheck,
   Settings,
   LogOut,
+  GaugeCircleIcon,
 } from "lucide-react";
 
 function NavItem({ icon, title, active, onClick }) {
@@ -66,7 +65,7 @@ export default function AdminSidebar({ activeTab, setActiveTab, isDarkMode, setI
           />
           <NavItem
             isDarkMode={isDarkMode}
-            icon={<TrendingUp className="w-5 h-5" />}
+            icon={<GaugeCircleIcon className="w-5 h-5" />}
             title="Performance"
             active={activeTab === "performance"}
             onClick={() => setActiveTab("performance")}

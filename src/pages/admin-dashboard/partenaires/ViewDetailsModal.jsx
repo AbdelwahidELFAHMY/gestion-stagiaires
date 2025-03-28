@@ -1,10 +1,8 @@
-import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Globe, Building, MapPin, User, Mail, Phone, Users, Activity } from "lucide-react"; // Import des icônes Lucide
 
 export default function ViewDetailsModal({ company, onClose }) {
   if (!company) return null;
-
   return (
     <AnimatePresence>
       {/* Overlay animé */}

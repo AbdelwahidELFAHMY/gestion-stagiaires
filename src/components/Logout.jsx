@@ -11,11 +11,11 @@ const Logout = ({ isLogoutModalOpen, onCancel }) => {
 
     return (
     <div className="fixed inset-0 bg-[rgba(0,0,0,0.4)] flex items-center justify-center z-50">
-      <div className="bg-white p-6 rounded-lg shadow-lg max-w-sm w-full relative">
+      <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg max-w-sm w-full relative">
         {/* Icone de fermeture */}
         <button
           onClick={onCancel}
-          className="absolute top-2 cursor-pointer right-2 text-gray-500 hover:text-gray-800"
+          className="absolute top-2 cursor-pointer right-2 text-gray-500 dark:hover:text-gray-300 hover:text-gray-800"
         >
           <FaTimesCircle size={24} />
         </button>
@@ -29,12 +29,12 @@ const Logout = ({ isLogoutModalOpen, onCancel }) => {
           />
 
           {/* Titre */}
-          <h2 className="text-lg font-bold text-gray-800 mb-3">
+          <h2 className="text-lg font-bold dark:text-gray-200 text-gray-800 mb-3">
             Confirmer la déconnexion
           </h2>
 
           {/* Texte descriptif */}
-          <p className="text-gray-600 mb-10">
+          <p className="dark:text-gray-200 text-gray-600 mb-10">
             Êtes-vous sûr de vouloir vous déconnecter ? Cette action mettra fin
             à votre session actuelle.
           </p>
