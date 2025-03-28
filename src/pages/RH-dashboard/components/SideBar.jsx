@@ -20,14 +20,12 @@ function Sidebar({ activeTab, setActiveTab }) {
     { id: "interns", label: "Stagiaires", icon: <Users size={20} /> },
     { id: "companies", label: "Entreprises", icon: <Building2 size={20} /> },
     { id: "subjects", label: "Sujets", icon: <BookOpen size={20} /> },
-    { id: "assignments", label: "Affectations", icon: <UserPlus size={20} /> },
     {
       id: "departments",
       label: "Départements",
       icon: <FolderKanban size={20} />,
     },
-    { id: "documents", label: "Documents", icon: <FileText size={20} /> },
-    { id: "stats", label: "Statistiques", icon: <BarChart size={20} /> },
+    { id: "employees", label: "Employees", icon: <Users size={20} /> },
   ];
 
   return (

@@ -1,12 +1,11 @@
 import { default as React, useState } from "react";
 
 import { Toaster } from "react-hot-toast";
-import AssignmentsContent from "./AssignmentsContent";
 import CompaniesContent from "./CompaniesContent";
 import Sidebar from "./components/SideBar";
 import DashboardContent from "./DashboardContent";
 import DepartmentsContent from "./DepartmentsContent";
-import DocumentsContent from "./DocumentsContent";
+import EmployeesContent from "./EmployeesContent";
 import InternsContent from "./InternsContent";
 import SubjectsContent from "./SubjectsContent";
 
@@ -23,12 +22,11 @@ function DashboardRH() {
         return <CompaniesContent />;
       case "subjects":
         return <SubjectsContent />;
-      case "assignments":
-        return <AssignmentsContent />;
+
       case "departments":
         return <DepartmentsContent />;
-      case "documents":
-        return <DocumentsContent />;
+      case "employees":
+        return <EmployeesContent />;
       default:
         return <DashboardContent />;
     }

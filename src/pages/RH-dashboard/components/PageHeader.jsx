@@ -6,7 +6,7 @@ function PageHeader({ title, onAdd }) {
       <h2 className="text-2xl font-bold">{title}</h2>
       <button
         onClick={onAdd}
-        className="bg-indigo-600 text-white px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-indigo-700"
+        className="cursor-pointer bg-indigo-600 text-white px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-indigo-700"
       >
         <Plus size={20} />
         Ajouter
