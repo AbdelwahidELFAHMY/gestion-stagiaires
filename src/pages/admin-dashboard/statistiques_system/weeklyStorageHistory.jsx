@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchWeeklyStorage } from "../../../stores/tech_stats_slices/weeklyStorageSlice";
+import { fetchWeeklyStorage } from "../../../stores/system_stats_slices/weeklyStorageSlice";
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from "recharts";
 import Skeleton from "../../../components/Skeleton";
 

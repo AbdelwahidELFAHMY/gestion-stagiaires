@@ -1,7 +1,7 @@
 // src/redux/slices/entrepriseSlice.js
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axiosInstance from '../../utils/axiosInstance';
-=
+
 // Création de l'asyncThunk pour récupérer les entreprises depuis le backend
 export const fetchEntreprises = createAsyncThunk(
   'entreprises/fetchEntreprises',

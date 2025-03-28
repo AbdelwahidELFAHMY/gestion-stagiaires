@@ -5,19 +5,6 @@ import DeleteCompanyModal from "./DeleteCompanyModal";
 import ViewDetailsModal from "./ViewDetailsModal";
 
 
-
-const dispatch = useDispatch();
-  const entreprises = useSelector((state) => state.entreprises.entreprises);
-  const loading = useSelector((state) => state.entreprises.loading);
-  const error = useSelector((state) => state.entreprises.error);
-
-  useEffect(() => {
-    dispatch(fetchEntreprises());
-  }, [dispatch]);
-
-  if (loading) return <p>Chargement...</p>;
-  if (error) return <p>Erreur: {error}</p>;
-
 // Données initiales des entreprises
 const initialCompanies = [
   {
@@ -357,6 +344,7 @@ const initialCompanies = [
 
 // Composant principal Companies
 const Companies = () => {
+
   const [searchQuery, setSearchQuery] = useState("");
   const [currentCompany, setCurrentCompany] = useState(null);
   const [activeDropdown, setActiveDropdown] = useState(null);
@@ -366,13 +354,11 @@ const Companies = () => {
   const [currentPage, setCurrentPage] = useState(1); // État pour la pagination
   const companiesPerPage = 7; // Nombre d'entreprises par page
 
+
   // Filtrer les entreprises en fonction de la recherche et du statut
   const filteredCompanies = companies.filter((company) => {
     const matchesSearch =
-      company.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      company.contactPerson.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      company.sector.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      company.location.toLowerCase().includes(searchQuery.toLowerCase());
+      company.name.toLowerCase().includes(searchQuery.toLowerCase())
 
     const matchesStatus =
       filterStatus === "all" || filterStatus === "" || company.status === filterStatus;

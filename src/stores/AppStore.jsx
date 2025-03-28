@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
-import techStatsReducer from './tech_stats_slices/techStatsSlice'; 
-import weeklyStorageReducer from './tech_stats_slices/weeklyStorageSlice'
+import techStatsReducer from './system_stats_slices/techStatsSlice'; 
+import weeklyStorageReducer from './system_stats_slices/weeklyStorageSlice'
 import entrepriseReducer from './entreprises_slices/entreprisesSlice';
 
 

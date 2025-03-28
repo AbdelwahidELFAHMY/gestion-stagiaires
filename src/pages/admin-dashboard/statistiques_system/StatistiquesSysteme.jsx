@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchTechStats } from "../../../stores/tech_stats_slices/techStatsSlice";
+import { fetchTechStats } from "../../../stores/system_stats_slices/techStatsSlice";
 import { FaMicrochip, FaMemory, FaHdd, FaClock } from "react-icons/fa";
 import WeeklyStorageHistory from "./weeklyStorageHistory";
 import DataStatisticsChart from "./DataStatisticsChart";
