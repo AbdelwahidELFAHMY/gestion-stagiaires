@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { toast } from "react-hot-toast";
 import ActionButtons from "./components/ActionButtons";
 import DeleteConfirmation from "./components/DeleteConfirmation";
 import InternForm from "./components/forms/InternForm";
 import Modal from "./components/Modal";
 import PageHeader from "./components/PageHeader";
 import SearchBar from "./components/SearchBar";
+import { toast } from "react-toastify";
 
 function InternsContent() {
   const [selectedIntern, setSelectedIntern] = useState(null);

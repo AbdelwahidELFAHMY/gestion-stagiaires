@@ -1,10 +1,21 @@
-import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Trash2, X } from "lucide-react"; // Importez les icônes Lucide
+import { useState } from "react";
 
 export default function DeleteCompanyModal({ company, onClose, onDelete }) {
-  if (!company) return null;
+  const [isDeleting, setIsDeleting] = useState(false);
 
+  const handleConfirmDelete = async () => {
+    setIsDeleting(true);
+    try {
+      await onDelete(company.entrepriseId);
+      onClose();
+    } catch (error) {
+      console.error("Erreur lors de la suppression:", error);
+    } finally {
+      setIsDeleting(false);
+    }
+  };
   return (
     <AnimatePresence>
       {/* Overlay animé */}
@@ -33,26 +44,30 @@ export default function DeleteCompanyModal({ company, onClose, onDelete }) {
           </p>
           <div className="mt-6 text-size13 flex justify-end gap-4">
             {/* Bouton Annuler avec icône */}
-            <button
-              onClick={onClose}
-              className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600 transition-colors flex items-center gap-2"
-            >
-              <X className="w-4 h-4" /> {/* Icône Lucide */}
-              Annuler
-            </button>
+          <button
+            onClick={onClose}
+            className="cursor-pointer px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600 transition-colors flex items-center gap-2"
+            disabled={isDeleting}
+          >
+            <X className="w-4 h-4" />
+            Annuler
+          </button>
 
-            {/* Bouton Supprimer avec icône */}
-            <button
-              onClick={() => {
-                onDelete(company.id);
-                onClose();
-              }}
-              className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition-colors flex items-center gap-2"
-            >
-              <Trash2 className="w-4 h-4" /> {/* Icône Lucide */}
-              Supprimer
-            </button>
-          </div>
+          <button
+            onClick={handleConfirmDelete}
+            className="cursor-pointer px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition-colors flex items-center gap-2"
+            disabled={isDeleting}
+          >
+            {isDeleting ? (
+              <span className="animate-pulse">Suppression...</span>
+            ) : (
+              <>
+                <Trash2 className="w-4 h-4" />
+                Supprimer
+              </>
+            )}
+          </button>
+        </div>
         </motion.div>
       </motion.div>
     </AnimatePresence>

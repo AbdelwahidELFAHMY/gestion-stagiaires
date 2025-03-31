@@ -23,19 +23,19 @@ export default function Header({ isDarkMode, setIsDarkMode, activeTab }) {
       <div className="flex items-center gap-5">
         {/* Wrapper div around the button */}
         <div
-          className="relative cursor-pointer flex items-center justify-center w-14 h-7  bg-indigo-900 dark:bg-gray-400 rounded-full transition-all ease-in-out duration-500"
+          className="relative cursor-pointer flex items-center justify-center w-12 h-6  bg-indigo-900 dark:bg-gray-400 rounded-full transition-all ease-in-out duration-500"
           onClick={() => setIsDarkMode(!isDarkMode)}
         >
           {/* Button that will translate inside the div */}
           <button
-            className={`cursor-pointer absolute w-6 h-6 rounded-full transition-transform duration-500 ease-in-out ${
+            className={`cursor-pointer absolute w-5 h-5 rounded-full transition-transform duration-500 ease-in-out ${
               isDarkMode ? "-translate-x-3" : "bg-gray-500  translate-x-3"
             }`}
           >
             {isDarkMode ? (
-              <FaSun size={20} style={{ color: "yellow" }} />
+              <FaSun size={18} style={{ color: "yellow" }} />
             ) : (
-              <FaMoon size={20} style={{ color: "#F5F5F5" }} />
+              <FaMoon size={18} style={{ color: "#F5F5F5" }} />
             )}
           </button>
         </div>

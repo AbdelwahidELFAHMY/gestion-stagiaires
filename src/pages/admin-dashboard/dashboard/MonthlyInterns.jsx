@@ -17,8 +17,8 @@ const data = [
 
 const MonthlyInterns = () => {
   return (
-    <div style={{ border: "1px solid #ccc", borderRadius: "8px", padding: "16px", width: "100%", maxWidth: "500px", margin: "auto" }}>
-      <h2 style={{ fontSize: "18px", marginBottom: "16px", textAlign: "center" }}>Stagiaires par mois</h2>
+<div className="border border-gray-300 rounded-lg p-4 w-full mx-auto">
+<h2 style={{ fontSize: "18px", marginBottom: "16px", textAlign: "center" }}>Stagiaires par mois</h2>
       <div style={{ height: "300px" }}>
         <ResponsiveContainer width="100%" height="100%">
           <BarChart data={data} margin={{ top: 0, right: 0, left: 0, bottom: 0 }}>

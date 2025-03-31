@@ -1,11 +1,12 @@
 import { motion } from "framer-motion";
-import { FiUsers, FiBriefcase, FiBarChart2 } from "react-icons/fi";
+import { FiUsers, FiBarChart2 } from "react-icons/fi";
 import { HiOutlineDocumentReport } from "react-icons/hi";
 import DistributionParEntreprise from "./DistributionParEntreprise";
 import MonthlyInterns from "./MonthlyInterns";
 import { useEffect, useState } from "react";
 import axiosInstance from "../../../utils/axiosInstance.jsx";
 import Skeleton from "../../../components/Skeleton.jsx";
+import { Building2 } from "lucide-react";
 
 export default function Dashboard() {
   const [stats, setStats] = useState(null);
@@ -25,7 +26,7 @@ export default function Dashboard() {
             value: data.nbrUtilisateurs,
           },
           {
-            icon: <FiBriefcase className="text-indigo-600 text-3xl dark:text-indigo-500" />,
+            icon: <Building2 className="text-indigo-600 text-3xl dark:text-indigo-500" />,
             label: "Entreprises",
             value: data.nbrEntreprises,
           },
@@ -53,11 +54,11 @@ export default function Dashboard() {
     if (loading) {
       return (
         <div className="p-6 space-y-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
             {[...Array(4)].map((_, index) => (
               <div
                 key={index}
-                className="h-32 bg-gray-300 dark:bg-gray-700 rounded-lg animate-pulse"
+                className="h-26 bg-gray-300 dark:bg-gray-700 rounded-lg animate-pulse"
               />
             ))}
           </div>
@@ -88,12 +89,12 @@ export default function Dashboard() {
       transition={{ duration: 0.5 }}
       className="p-6 max-w-full dark:bg-gray-900 bg-white min-h-screen"
     >
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {stats.map((stat, index) => (
           <motion.div
             key={index}
             whileHover={{ scale: 1.02 }}
-            className="dark:bg-gray-800 border-thin border-blue-300 cursor-pointer bg-white shadow-sm rounded-xl p-6 flex items-center space-x-10"
+            className="dark:bg-gray-800 border-thin dark:border-blue-800 border-blue-300 cursor-pointer bg-white shadow-sm rounded-xl p-6 flex items-center space-x-10"
           >
             {stat.icon}
             <div>

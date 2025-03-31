@@ -1,6 +1,5 @@
-import { default as React, useState } from "react";
+import { useState } from "react";
 
-import { Toaster } from "react-hot-toast";
 import CompaniesContent from "./CompaniesContent";
 import Sidebar from "./components/SideBar";
 import DashboardContent from "./DashboardContent";
@@ -45,7 +44,6 @@ function DashboardRH() {
         </header>
         {renderContent()}
       </main>
-      <Toaster position="top-right" />
     </div>
   );
 }

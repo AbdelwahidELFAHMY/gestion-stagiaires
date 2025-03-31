@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { toast } from "react-hot-toast";
 import ActionButtons from "./components/ActionButtons";
 import DeleteConfirmation from "./components/DeleteConfirmation";
 import EmployeeForm from "./components/forms/EmployeeForm";
@@ -7,6 +6,7 @@ import Modal from "./components/Modal";
 import PageHeader from "./components/PageHeader";
 import SearchBar from "./components/SearchBar";
 import Badge from "./components/Badge";
+import { toast } from "react-toastify";
 
 function EmployeesContent() {
   const [selectedEmployee, setSelectedEmployee] = useState(null);
