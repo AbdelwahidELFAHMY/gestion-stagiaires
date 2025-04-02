@@ -206,8 +206,8 @@ export default function Parameters() {
     );
 
   return (
-    <div className="p-6 max-w-4xl mx-auto bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200">
-      <div className="flex justify-between text-gray-700 dark:text-gray-200  items-center mb-6">
+    <div className="p-4 max-w-4xl mx-auto bg-transparent text-gray-800 dark:text-gray-200">
+      <div className="flex justify-between text-gray-700 dark:text-gray-200  items-center mb-3">
         <div className="flex items-center gap-3">
           <UserCog size={22} className="text-gray-600 dark:text-gray-300" />
           <h4 className="text-lg font-semibold">Paramètres du Compte</h4>
@@ -235,7 +235,7 @@ export default function Parameters() {
                     : userData.photo
                 }`}
                 alt={`Photo ${formData.nom} ${formData.prenom}`}
-                className="h-40 w-40 rounded-full object-cover border border-gray-200 dark:border-gray-600 mb-4"
+                className="h-60 w-60 rounded-full object-cover border-thin border-gray-200 dark:border-gray-600 mb-4"
               />
             ) : (
               <div className="h-40 w-40 rounded-full bg-gradient-to-br from-purple-500 to-purple-600 dark:from-purple-600 dark:to-purple-700 flex items-center justify-center text-white text-4xl font-bold mb-4">

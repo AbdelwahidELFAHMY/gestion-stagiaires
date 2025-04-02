@@ -1,17 +1,13 @@
-import { FaBell } from "react-icons/fa";
 import { useState, useEffect, useCallback } from "react";
 import { getUsernameFromToken } from "../../../utils/getUsernameFromToken";
 import GetImageFromURL from "../../../utils/getImageFromURL";
 import axiosInstance from "../../../utils/axiosInstance";
-import Notifications from "./Notifications";
-import { toast } from "react-toastify";
+import Notifications from "../../../components/Notifications";
 
 export default function HeaderInfo() {
   const [userInfo, setUserInfo] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [unreadCount, setUnreadCount] = useState(0);
-  const [showNotifications, setShowNotifications] = useState(false);
 
   const fetchUserData = useCallback(async () => {
     try {
@@ -21,11 +17,7 @@ export default function HeaderInfo() {
       const response = await axiosInstance.get(
         `/current_user_header/${username}`
       );
-
       setUserInfo(response.data);
-      setUnreadCount(
-        response.data.notifications.filter((n) => !n.read).length
-      );
     } catch (err) {
       console.error("Failed to fetch user data:", err);
       setError(err.message);
@@ -37,35 +29,6 @@ export default function HeaderInfo() {
   useEffect(() => {
     fetchUserData();
   }, [fetchUserData]);
-
-  const handleMarkAsRead = useCallback(async (notificationId) => {
-    try {
-      await axiosInstance.patch(`/notifications/${notificationId}/read`);
-      
-      // Optimistic update
-      setUserInfo(prev => {
-        const updatedNotifications = prev.notifications.map(n => 
-          n.id === notificationId ? { ...n, read: true } : n
-        );
-        
-        return {
-          ...prev,
-          notifications: updatedNotifications,
-        };
-      });
-      
-      setUnreadCount(prev => Math.max(0, prev - 1));
-      
-    } catch (err) {
-      console.error("Error marking notification as read:", err);
-      // Rollback optimistic update
-      setUserInfo(prev => ({ ...prev }));
-      toast.error("Échec de la mise à jour de la notification");
-    }
-  }, []);
-  const toggleNotifications = useCallback(() => {
-    setShowNotifications((prev) => !prev);
-  }, []);
 
   if (loading) {
     return (
@@ -81,31 +44,9 @@ export default function HeaderInfo() {
   }
 
   return (
-    <>
-      <div className="relative ">
-        <button
-          onClick={toggleNotifications}
-          className="relative cursor-pointer p-1 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
-          aria-label="Afficher les notifications"
-        >
-          <FaBell
-            className="dark:text-gray-400 text-gray-600 transition duration-300 ease-in-out"
-            size={22}
-          />
-          {unreadCount > 0 && (
-            <span className="absolute -top-1 -right-1 bg-red-500 text-white text-size11 rounded-full h-4.5 w-4.5 flex items-center justify-center">
-              {unreadCount}
-            </span>
-          )}
-        </button>
-
-        <Notifications
-          notifications={userInfo?.notifications || []}
-          isOpen={showNotifications}
-          onClose={() => setShowNotifications(false)}
-          onMarkAsRead={handleMarkAsRead}
-        />
-      </div>
+    <div className="flex items-center gap-6">
+      <Notifications notifications={userInfo?.notifications || []} />
+      
       <div className="flex items-center gap-4">
         {userInfo?.photo ? (
           <GetImageFromURL
@@ -132,6 +73,6 @@ export default function HeaderInfo() {
           </span>
         </div>
       </div>
-    </>
+    </div>
   );
 }

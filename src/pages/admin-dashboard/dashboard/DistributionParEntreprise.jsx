@@ -7,13 +7,13 @@ const DistributionParEntreprise = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Récupérer les données depuis l'API
   useEffect(() => {
     axiosInstance
       .get("admin/entreprises/stagiaires_par_entreprise")
       .then((response) => {
         const transformedData = Object.entries(response.data).map(([name, value]) => ({
           name,
+          shortName: name.substring(0, 2).toUpperCase(), // Récupère les 2 premières lettres
           value,
           color: getRandomColor(), 
         }));
@@ -21,12 +21,11 @@ const DistributionParEntreprise = () => {
         setLoading(false);
       })
       .catch((error) => {
-        setError(error.response.data.message || "Erreur est survenue lors de l'appel au backend");
+        setError(error.response?.data?.message || "Erreur est survenue lors de l'appel au backend");
         setLoading(false);
       });
   }, []);
 
-  // Fonction pour générer des couleurs aléatoires
   const getRandomColor = () => {
     const letters = "0123456789ABCDEF";
     let color = "#";
@@ -36,12 +35,49 @@ const DistributionParEntreprise = () => {
     return color;
   };
 
+  // Personnalisation du Tooltip
+  const CustomTooltip = ({ active, payload }) => {
+    if (active && payload && payload.length) {
+      return (
+        <div className="bg-white text-size13 dark:text-gray-200 dark:bg-gray-700 p-3 border border-gray-200 dark:border-gray-600 rounded shadow-lg">
+          <p className="font-semibold">{payload[0].payload.name}</p>
+          <p>{payload[0].value} stagiaires</p>
+        </div>
+      );
+    }
+    return null;
+  };
+
+  // Personnalisation de la légende
+  const renderLegend = (props) => {
+    const { payload } = props;
+    return (
+      <ul className="flex flex-wrap justify-center gap-2 mt-4 dark:text-gray-300">
+        {payload.map((entry, index) => (
+          <li 
+            key={`item-${index}`} 
+            className="flex items-center"
+            title={entry.payload.name} // Tooltip avec le nom complet
+          >
+            <span 
+              className="inline-block w-4 h-4 mr-2" 
+              style={{ backgroundColor: entry.color }}
+            />
+            <span className="text-xs">{entry.payload.shortName}</span>
+          </li>
+        ))}
+      </ul>
+    );
+  };
+
   if (loading) return <p>Chargement...</p>;
   if (error) return <p>{error}</p>;
 
   return (
-<div className="border border-gray-300 rounded-lg p-4 w-full mx-auto">
-<h2 style={{ fontSize: "18px", marginBottom: "16px", textAlign: "center" }}>Distribution par entreprise</h2>
+    <div className="border-thin dark:bg-gray-800 border-gray-300 dark:border-gray-500 rounded-lg p-4 w-full mx-auto">
+      <h2 className="dark:text-gray-200" style={{ fontSize: "18px", marginBottom: "16px", textAlign: "center" }}>
+        Distribution par entreprise
+      </h2>
       <div style={{ height: "300px" }}>
         <ResponsiveContainer width="100%" height="100%">
           <PieChart>
@@ -53,13 +89,14 @@ const DistributionParEntreprise = () => {
               outerRadius={110}
               fill="#8884d8"
               dataKey="value"
+              label={({ shortName }) => shortName} // Affiche les 2 premières lettres sur les slices
             >
               {data.map((entry, index) => (
                 <Cell key={`cell-${index}`} fill={entry.color} />
               ))}
             </Pie>
-            <Tooltip formatter={(value) => [`${value} stagiaires`, 'Nombre']} />
-            <Legend />
+            <Tooltip content={<CustomTooltip />} />
+            <Legend content={renderLegend} />
           </PieChart>
         </ResponsiveContainer>
       </div>

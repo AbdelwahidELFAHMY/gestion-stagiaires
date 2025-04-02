@@ -2,11 +2,11 @@
 import { useState } from "react";
 import SidebarStagiaire from "./SidebarStagiaire";
 import StageProgress from "./StageProgress";
-import HeaderStagiaire from "./HeaderStagiaire";
 import Messaging from "./messages";
 import Documents from "./Documents";
 import Agenda from "./Agenda";
 import Presence from "./Presence";
+import HeaderStagiaire from "./Header/HeaderStagiaire";
 
 const DashboardStagiaire = () => {
   const [activeComponent, setActiveComponent] = useState("StageProgress");

@@ -189,7 +189,7 @@ const AddCompanyModal = ({ onClose, onSave }) => {
         </div>
 
         {/* Step Content */}
-        <div className="flex-1 overflow-y-auto py-10 px-8">
+        <div className="flex-1 overflow-y-auto py-10 px-8 dark:text-gray-300">
           {step === 1 && (
             <div className="space-y-6">
               <div className="text-size13 grid grid-cols-1 md:grid-cols-2 gap-5">

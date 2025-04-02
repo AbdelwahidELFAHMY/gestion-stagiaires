@@ -242,7 +242,7 @@ const Companies = () => {
               Filtrer par statut:
             </span>
             <select
-              className="py-1.5 px-6 text-size14 cursor-pointer outline-none border-thin dark:bg-gray-800 border-gray-400 rounded"
+              className="py-1.5 px-6 text-size14 cursor-pointer outline-none border-thin dark:text-gray-200 dark:bg-gray-800 border-gray-400 rounded"
               value={filterStatus}
               onChange={(e) => setFilterStatus(e.target.value)}
             >
@@ -281,7 +281,7 @@ const Companies = () => {
                 className="cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800  "
               >
                 <td className="px-4 py-2.5">
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-3 ">
                     <div
                       className="h-9 w-9 rounded-full text-center text-white flex items-center justify-center"
                       style={{
@@ -291,19 +291,19 @@ const Companies = () => {
                       {company.name.substring(0, 2).toUpperCase()}
                     </div>
                     <div>
-                      <div className="font-medium">{company.name}</div>
+                      <div className="font-medium dark:text-gray-100">{company.name}</div>
                       <div className="text-sm text-gray-600 dark:text-gray-400">
                         {company.industry}
                       </div>
                     </div>
                   </div>
                 </td>
-                <td className="px-4 py-2">
-                  <div className="font-normal">{company.email}</div>
+                <td className="px-4 py-2 dark:text-gray-100">
+                  {company.email}
                 </td>
-                <td className="px-4 py-2">{company.address}</td>
-                <td className="px-4 py-2">{company.nbrStagiaires}</td>
-                <td className="px-4 py-2">
+                <td className="px-4 py-2 dark:text-gray-100">{company.address}</td>
+                <td className="px-4 py-2 dark:text-gray-100">{company.nbrStagiaires}</td>
+                <td className="px-4 py-2 dark:text-gray-100">
                   <Toggle
                     isActive={company.active}
                     onToggle={() => handleToggleStatus(company.entrepriseId)}
