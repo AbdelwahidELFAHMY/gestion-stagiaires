@@ -5,6 +5,8 @@ import {
   FaSearch,
   FaArrowLeft,
   FaArrowRight,
+  FaExclamationTriangle,
+  FaSpinner,
 } from "react-icons/fa";
 import { FiMoreHorizontal } from "react-icons/fi";
 import DeleteCompanyModal from "./DeleteCompanyModal";
@@ -37,10 +39,6 @@ const Companies = () => {
   useEffect(() => {
     dispatch(fetchEntreprises());
   }, [dispatch]);
-
-  if (loading) return <p>Chargement...</p>;
-  if (error) return <p>Erreur: {error}</p>;
-
   // Filtrer les entreprises
   const filteredCompanies = entreprises.filter((company) => {
     const matchesSearch = company.name
@@ -185,6 +183,44 @@ const Companies = () => {
       );
     }
   };
+
+
+
+  if (loading) {
+    return (
+      <div className="flex flex-col items-center justify-center min-h-[300px] gap-4">
+        <FaSpinner className="animate-spin text-4xl text-blue-500" />
+        <p className="text-lg text-gray-600 dark:text-gray-400">
+          Chargement des entreprises en cours...
+        </p>
+        <p className="text-sm text-gray-500 dark:text-gray-500">
+          Veuillez patienter
+        </p>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="flex flex-col items-center justify-center min-h-[300px] gap-4 p-4 bg-red-50 dark:bg-red-900/20 rounded-lg">
+        <div className="flex items-center gap-3">
+          <FaExclamationTriangle className="text-3xl text-red-500 dark:text-red-400" />
+          <h3 className="text-xl font-medium text-red-700 dark:text-red-300">
+            Erreur de chargement des entreprises
+          </h3>
+        </div>
+        <p className="text-center text-gray-700 dark:text-gray-300">
+          {error || "Une erreur inconnue est survenue"}
+        </p>
+        <button
+          onClick={() => dispatch(fetchEntreprises())}
+          className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
+        >
+          Réessayer
+        </button>
+      </div>
+    );
+  }
 
   return (
     <div className="container mx-auto p-6">

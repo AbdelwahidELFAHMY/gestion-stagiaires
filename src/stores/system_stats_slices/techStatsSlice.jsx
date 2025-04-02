@@ -30,8 +30,6 @@ const techStatsSlice = createSlice({
         state.status = 'loading';
       })
       .addCase(fetchTechStats.fulfilled, (state, action) => {
-        console.log("Réponse API:", action.payload);
-
         state.status = 'succeeded';
         // Remplir les statistiques dans le state
         state.cpuUsage = action.payload.cpuUsage;

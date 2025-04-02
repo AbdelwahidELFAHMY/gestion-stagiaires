@@ -1,11 +1,23 @@
 import { AiOutlineExclamationCircle } from "react-icons/ai";
 import { FaTimesCircle } from "react-icons/fa";
 import { RiLogoutBoxRLine } from "react-icons/ri";
+import { useNavigate } from "react-router-dom";
 
 const Logout = ({ isLogoutModalOpen, onCancel }) => {
+
+  const navigate = useNavigate();
   if (!isLogoutModalOpen) return null;
 
   const handleConfirmLogout = () => {
+    // 1. Supprimer les éléments du localStorage
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("refreshToken");
+    
+    // 2. Rediriger vers la page d'accueil
+    navigate("/"); 
+    
+    // 3. Fermer la modal
+    onCancel();
   };
 
 

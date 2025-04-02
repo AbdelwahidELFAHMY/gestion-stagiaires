@@ -6,8 +6,8 @@ import { motion } from "framer-motion";
 import { FaSearch } from "react-icons/fa"; // Import the search icon
 import Logout from "../../components/Logout";
 import Profile from "./profile";
-import Notifications from "./Notifications";
 import SearchModal from "./SearchModal"; // Import the search modal
+import Notifications from "./Notifications";
 
 const HeaderStagiaire = () => {
   const [companyInfo, setCompanyInfo] = useState({ name: "", logo: "" });

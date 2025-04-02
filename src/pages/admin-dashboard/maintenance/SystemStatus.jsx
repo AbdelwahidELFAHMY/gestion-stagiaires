@@ -8,6 +8,7 @@ import {
 } from "lucide-react";
 import axiosInstance from "../../../utils/axiosInstance";
 import Skeleton from "../../../components/Skeleton";
+import MaintenanceScheduler from "./MaintenanceScheduler";
 
 const SystemStatus = () => {
   const [status, setStatus] = useState(null);
@@ -174,11 +175,8 @@ const SystemStatus = () => {
           </div>
         </div>
         <div>
-          <div className="flex justify-end mb-4">
-            <button className="bg-blue-500 cursor-pointer hover:shadow-muted-foreground shadow-md shadow-blue-600 text-white text-size13 px-4 py-2 rounded-lg flex items-center space-x-2">
-              <CalendarPlus className="h-5 w-5" />
-              <span>Programmer la maintenance</span>
-            </button>
+        <div className="flex justify-end mb-4 ">
+            <MaintenanceScheduler />
           </div>
           <div className="p-5 dark:bg-blue-950 rounded-lg border-thin border-gray-200 bg-blue-50 dark:border-gray-700 animate-fadeIn">
             <h3 className="font-semibold text-lg text-gray-700 dark:text-gray-200 mb-3">

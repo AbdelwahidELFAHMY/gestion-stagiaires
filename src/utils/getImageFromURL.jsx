@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import axiosInstance from "./axiosInstance";
+import { Image } from "lucide-react";
 
-function CompanyLogo({ logoUrl, alt, className }) {
+function GetImageFromURL({ logoUrl, alt, className }) {
   const [imageSrc, setImageSrc] = useState("");
 
   useEffect(() => {
@@ -35,15 +36,17 @@ function CompanyLogo({ logoUrl, alt, className }) {
 
   return (
     <img
+    decoding="async"
+    loading="lazy"
       src={imageSrc}
       alt={alt}
       className={className}
       onError={(e) => {
         e.target.onerror = null;
-        e.target.src = "/default-logo.png";
+        e.target.src = <Image/>;
       }}
     />
   );
 }
 
-export default CompanyLogo;
+export default GetImageFromURL;

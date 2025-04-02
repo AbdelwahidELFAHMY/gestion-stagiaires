@@ -187,7 +187,7 @@ const HttpMetricsChart = () => {
   }
 
   return (
-    <div className=" bg-white dark:bg-gray-900 px-6">
+    <div className=" bg-white dark:bg-gray-900 px-6 z-0">
       {/* Conteneur principal en grid */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Premier graphique (BarChart) */}
