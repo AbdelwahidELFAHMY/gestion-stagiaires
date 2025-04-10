@@ -90,7 +90,7 @@ const Notifications = ({ notifications = [] }) => {
       ));
     } catch (err) {
       console.error("Error marking notification as read:", err);
-      toast.error("Échec de la mise à jour");
+      toast.error("Une erreur est rencontre");
     }
   }, []);
 
@@ -168,7 +168,7 @@ const Notifications = ({ notifications = [] }) => {
                   {unreadCount > 0 && (
                     <button
                       onClick={handleMarkAllAsRead}
-                      className="cursor-pointer text-xs text-blue-500 hover:text-blue-700 dark:hover:text-blue-300 px-2 py-1 rounded hover:bg-blue-100 dark:hover:bg-blue-400/10 transition-colors"
+                      className="cursor-pointer text-size11 text-blue-500 hover:text-blue-700 dark:hover:text-blue-300 px-2 py-1 rounded hover:bg-blue-100 dark:hover:bg-blue-400/10 transition-colors"
                     >
                       Tout marquer comme lu
                     </button>

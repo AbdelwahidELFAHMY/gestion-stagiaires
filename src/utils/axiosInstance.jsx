@@ -2,7 +2,7 @@ import axios from "axios";
 
 const axiosInstance = axios.create({
   baseURL: "http://localhost:8080/api",
-  timeout: 10000, // 10s timeout
+  timeout: 1000000, // 10s timeout
   headers: { "Content-Type": "application/json" },
 });
 
@@ -22,7 +22,7 @@ axiosInstance.interceptors.response.use(
     const originalRequest = error.config;
 
     // Vérifier si l'erreur est une 401 et qu'on n'a pas déjà essayé un refresh
-    if (error.response?.status === 401 && !originalRequest._retry) {
+    if (error.response?.status === 403 && !originalRequest._retry) {
       originalRequest._retry = true;
 
       try {

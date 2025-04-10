@@ -12,32 +12,18 @@ export default function Performance() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const cachedStats = localStorage.getItem("performanceStats");
-    const lastFetchTime = localStorage.getItem("lastFetchTime");
-    const now = new Date().getTime();
-    const TWENTY_FOUR_HOURS = 0 * 60 * 60 * 1000; // 1 heures en millisecondes
-
-    if ( now - lastFetchTime < TWENTY_FOUR_HOURS) {
-      // Utiliser les données en cache
-      setStats(JSON.parse(cachedStats));
-      setLoading(false);
-    } else {
-      // Faire l'appel API si les données sont expirées
-      axiosInstance
-        .get("/performance/stats")
-        .then((response) => {
-          setStats(response.data);
-          setLoading(false);
-          // Sauvegarder dans localStorage
-          localStorage.setItem("performanceStats", JSON.stringify(response.data));
-          localStorage.setItem("lastFetchTime", now);
-        })
-        .catch((error) => {
-          setError(error.response.data.message);
-          setLoading(false);
-        });
-    }
+    axiosInstance
+      .get("/performance/stats")
+      .then((response) => {
+        setStats(response.data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        setError(error.response?.data?.message || "Une erreur est survenue");
+        setLoading(false);
+      });
   }, []);
+  
 
   if (loading) {
     return (
@@ -78,8 +64,8 @@ export default function Performance() {
           value={`${stats.responseTime || 0} ms`}
           icon={<Clock className="h-5 w-5" />}
           change={{
-            value: stats.responseTimeChange || "0%",
-            positive: (stats.responseTimeChange || "").includes("-"),
+            value: stats.responseTimeChange + " ms" || "0 ms",
+            positive: (stats.responseTimeChange?.toString() || "").includes("-"),
           }}
         />
         <PerformanceStats
@@ -87,8 +73,8 @@ export default function Performance() {
           value={`${stats.requestRate || 0} req/min`}
           icon={<Gauge className="h-5 w-5" />}
           change={{
-            value: stats.requestRateChange || "0%",
-            positive: (stats.requestRateChange || "").includes("+"),
+            value: stats.requestRateChange + " req/min" || "0 req/min",
+            positive: (stats.requestRateChange?.toString() || "").includes("+"),
           }}
         />
         <PerformanceStats
@@ -96,8 +82,8 @@ export default function Performance() {
           value={`${stats.errorRate || 0} %`}
           icon={<Zap className="h-5 w-5" />}
           change={{
-            value: stats.errorRateChange || "0%",
-            positive: (stats.errorRateChange || "").includes("-"),
+            value: stats.errorRateChange + " %" || "0%",
+            positive: (stats.errorRateChange?.toString()  || "").includes("-"),
           }}
         />
         <PerformanceStats
@@ -105,8 +91,8 @@ export default function Performance() {
           value={`${stats.dbResponseTime || 0} ms`}
           icon={<Database className="h-5 w-5" />}
           change={{
-            value: stats.dbResponseTimeChange || "0%",
-            positive: (stats.dbResponseTimeChange || "").includes("-"),
+            value: stats.dbResponseTimeChange + " ms"|| "0 ms",
+            positive: (stats.dbResponseTimeChange?.toString() || "").includes("-"),
           }}
         />
       </div>

@@ -8,8 +8,19 @@ export default defineConfig({
   plugins: [
     react(),
     tailwindcss(),
+
   ],
+  define: {
+    'process.env': {},
+    global: {}
+  },
+  optimizeDeps: {
+    include: ['jspdf', 'html2canvas']
+  },
   server: {
-    historyApiFallback: true,  // Permet à React Router de gérer les routes côté client
+    historyApiFallback: true, 
+    headers: {
+      "Content-Security-Policy": "script-src 'self' 'unsafe-inline'"
+    },
   },
 })

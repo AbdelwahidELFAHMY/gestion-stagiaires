@@ -1,28 +1,30 @@
 
 import { useState } from "react";
 import SidebarStagiaire from "./SidebarStagiaire";
-import StageProgress from "./StageProgress";
-import Messaging from "./messages";
-import Documents from "./Documents";
-import Agenda from "./Agenda";
-import Presence from "./Presence";
+import StageProgress from "./stage/StageProgress";
 import HeaderStagiaire from "./Header/HeaderStagiaire";
+import Messaging from "./messages/messages";
+import Agenda from "./agenda/Agenda";
+import Livrables from "./livrable/Livrables";
+import DiagrammeDeGantt from "./gantt/DiagrammeDeGantt";
+import Ressources from "./ressources/Ressources";
+import Compte from "./compte/Compte";
 
 const DashboardStagiaire = () => {
   const [activeComponent, setActiveComponent] = useState("StageProgress");
 
   const renderComponent = () => {
     switch (activeComponent) {
-      case "Documents":
-        return <Documents/>;
-      case "Presence":
-        return <Presence/>;
-      case "Tasks":
-        return <div>Tasks Content</div>;
-      case "Agenda":
-        return <Agenda/>;
-      case "Resources":
-        return <div>Resources Content</div>;
+      case "MonCompte":
+        return <Compte />;
+      case "MesLivrables":
+        return <Livrables />;
+      case "DiagrammeDeGantt":
+        return <DiagrammeDeGantt />;
+      case "MonAgenda":
+        return <Agenda />;
+      case "Ressources":
+        return <Ressources />;
       default:
         return <StageProgress />;
     }

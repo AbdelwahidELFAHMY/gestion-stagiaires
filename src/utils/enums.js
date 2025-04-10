@@ -1,3 +1,4 @@
+
 export const DemandeStageStatus = {
   NOUVEAU: "NOUVEAU",
   REFUSE: "REFUSE",
@@ -13,7 +14,7 @@ export const SujetStageStatus = {
 export const TacheStatus = {
   A_FAIRE: "A_FAIRE",
   EN_COURS: "EN_COURS",
-  TERMINEs: "TERMINEs",
+  TERMINE: "TERMINE",
 };
 
 export const StageType = {

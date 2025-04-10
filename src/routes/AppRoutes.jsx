@@ -16,7 +16,9 @@ const AppRoutes = () => {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/*" element={<NotFoundPage />} />
+        <Route path="/*" element={<NotFoundPage />} /> 
+                 <Route path="/dashboard-encadrant" element={<DashboardEncadrant />} />
+
 
         {/* Routes protégées */}
         <Route element={<ProtectedRoute allowedRoles={["ADMIN"]} />}>
@@ -29,7 +31,6 @@ const AppRoutes = () => {
           <Route path="/dashboard-rh" element={<DashboardRH />} />
         </Route>
         <Route element={<ProtectedRoute allowedRoles={["ENCADRANT"]} />}>
-          <Route path="/dashboard-encadrant" element={<DashboardEncadrant />} />
         </Route>
       </Routes>
     </Router>

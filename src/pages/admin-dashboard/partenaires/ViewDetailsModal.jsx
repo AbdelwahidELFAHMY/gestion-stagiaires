@@ -10,7 +10,6 @@ import {
   Calendar,
   Image as ImageIcon,
   User as UserIcon,
-  Shield,
   XCircle,
   CheckCircle,
 } from "lucide-react";

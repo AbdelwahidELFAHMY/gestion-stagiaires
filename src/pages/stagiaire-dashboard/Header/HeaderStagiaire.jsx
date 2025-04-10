@@ -1,10 +1,10 @@
 import CompanyInfo from "./CompanyInfo";
 import SearchBar from "./SearchBar";
-import ProfileMenu from "./ProfileMenu";
 import Notifications from "../../../components/Notifications";
 import axiosInstance from "../../../utils/axiosInstance";
 import { useEffect, useState } from "react";
 import { getUsernameFromToken } from "../../../utils/getUsernameFromToken";
+import Menu from "./Menu";
 
 const HeaderStagiaire = () => {
   const [notifications, setNotifications] = useState([]);
@@ -32,18 +32,18 @@ const HeaderStagiaire = () => {
   }, [username]);
 
   return (
-    <header className="flex justify-between items-center h-16 bg-white px-8 py-4 border-b border-gray-200">
+    <header className="flex justify-between items-center h-16 bg-white px-6 py-4 border-b border-gray-200">
       <CompanyInfo />
 
       <div className="flex-grow text-center">
-        <h2 className="text-lg font-semibold text-gray-700">Bienvenue 👋</h2>
+        <span className=" bg-gradient-to-r from-blue-700 via-blue-800 to-gray-700 bg-clip-text text-transparent font-semibold">B I E N V E N U E </span>
       </div>
 
       <div className="flex items-center space-x-4">
         <SearchBar />
         <Notifications notifications={notifications || []} />
 
-        <ProfileMenu />
+        <Menu />
       </div>
     </header>
   );
