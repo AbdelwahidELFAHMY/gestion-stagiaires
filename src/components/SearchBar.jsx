@@ -19,8 +19,8 @@ const SearchBar = () => {
       <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500" />
       <input
         type="search"
-        className="pl-10 rounded p-2 text-size11 border-thin bg-gray-100 border-gray-300 focus:outline-none"
-        placeholder="Rechercher"
+        className="pl-10 rounded p-2 text-size11 border-b-thin bg-gray-50 border-gray-300 focus:outline-none"
+        placeholder="Rechercher..."
         value={searchQuery}
         onChange={handleSearchChange}
       />

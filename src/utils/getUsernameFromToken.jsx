@@ -1,4 +1,3 @@
-// utils/getUserInfo.js
 import { jwtDecode } from "jwt-decode";
 
 export const getUsernameFromToken = () => {

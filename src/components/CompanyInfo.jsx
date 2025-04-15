@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import axiosInstance from "../../../utils/axiosInstance";
-import GetImageFromURL from "../../../utils/getImageFromURL";
-import { getUsernameFromToken } from "../../../utils/getUsernameFromToken";
+import axiosInstance from "../utils/axiosInstance";
+import GetImageFromURL from "../utils/getImageFromURL";
+import { getUsernameFromToken } from "../utils/getUsernameFromToken";
 
 const CompanyInfo = () => {
   const [companyInfo, setCompanyInfo] = useState({
@@ -21,7 +21,7 @@ const CompanyInfo = () => {
         }
 
         const response = await axiosInstance.get(
-          `/stagiaires/entreprise_header_info/${username}`
+          `/entreprise_header_info/${username}`
         );
 
         setCompanyInfo({

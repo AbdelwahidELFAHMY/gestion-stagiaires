@@ -3,15 +3,22 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   MdDashboard,
   MdGroup,
-  MdAssignment,
   MdCalendarToday,
   MdLibraryBooks,
 } from "react-icons/md";
 import { AiOutlineLeft, AiOutlineRight, AiOutlineDown } from "react-icons/ai";
-import { ChartGantt, FileText, UserCircle2, UserCogIcon, X } from "lucide-react";
+import {
+  ChartGantt,
+  FileText,
+  User2,
+  UserCircle2,
+  UserCogIcon,
+  X,
+} from "lucide-react";
 import { getUsernameFromToken } from "../../utils/getUsernameFromToken";
 import axiosInstance from "../../utils/axiosInstance";
 import GetImageFromURL from "../../utils/getImageFromURL";
+import { FaRegFolderOpen } from "react-icons/fa";
 
 const SidebarStagiaire = ({ setActiveComponent }) => {
   const [isOpen, setIsOpen] = useState(true);
@@ -122,7 +129,7 @@ const SidebarStagiaire = ({ setActiveComponent }) => {
         />
         <SidebarItem
           isOpen={isOpen}
-          icon={<MdAssignment size={18} />}
+          icon={<FaRegFolderOpen size={18} />}
           text="Livrables"
           onClick={() => handleItemClick("MesLivrables")}
           isActive={activeItem === "MesLivrables"}
@@ -214,8 +221,8 @@ const SidebarStagiaire = ({ setActiveComponent }) => {
                             className="w-10 h-10 rounded-full object-cover"
                           />
                         ) : (
-                          <div className="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center">
-                            {member.name.charAt(0)}
+                          <div className="p-1 bg-gray-50 border-thin border-gray-100 rounded-full">
+                            <User2 className="h-8 w-8 text-neutral-800" />
                           </div>
                         )}
                         <span className="text-size11 text-gray-800">
@@ -288,7 +295,7 @@ const SidebarStagiaire = ({ setActiveComponent }) => {
                       className="absolute top-5 right-5 p-1 cursor-pointer rounded-full bg-gray-100 hover:bg-gray-200 text-gray-600 hover:text-blue-500 transition-colors"
                       aria-label="Fermer"
                     >
-                      <X size={14}/>
+                      <X size={14} />
                     </button>
                   </div>
 

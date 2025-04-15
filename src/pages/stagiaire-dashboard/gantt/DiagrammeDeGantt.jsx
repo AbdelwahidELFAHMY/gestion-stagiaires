@@ -338,7 +338,7 @@ function drawTaskBar({ ctx, x, y, width, height, text, color, progress, config }
   }
 
  return (
-    <div className="w-full h-full bg-white p-4">
+    <div className="w-full h-full bg-white p-4 overflow-y-auto scrollbar-thin">
       <div className="flex justify-between items-center mb-3 mt-1">
   <span className='text-sm bg-gradient-to-r from-blue-700 via-blue-800 to-gray-900 bg-clip-text text-transparent'>
     <GanttChart className=' text-blue-800 w-10 h-6 inline mr-3'/>Diagramme de Gantt

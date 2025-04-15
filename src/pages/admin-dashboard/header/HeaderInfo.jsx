@@ -1,8 +1,9 @@
 import { useState, useEffect, useCallback } from "react";
 import { getUsernameFromToken } from "../../../utils/getUsernameFromToken";
-import GetImageFromURL from "../../../utils/getImageFromURL";
 import axiosInstance from "../../../utils/axiosInstance";
 import Notifications from "../../../components/Notifications";
+import GetImageFromURL from "../../../utils/getImageFromURL";
+import { User2 } from "lucide-react";
 
 export default function HeaderInfo() {
   const [userInfo, setUserInfo] = useState(null);
@@ -57,11 +58,9 @@ export default function HeaderInfo() {
             alt={userInfo.nom}
             className="h-12 w-12 rounded-full object-cover"
           />
-        ) : (
-          <div className="h-12 w-12 rounded-full bg-gray-300 dark:bg-gray-700 flex items-center justify-center">
-            <span className="text-lg font-semibold text-gray-600 dark:text-gray-300">
-              {userInfo?.nom?.charAt(0) || "U"}
-            </span>
+        ) :(
+          <div className="p-1 bg-gray-200 border-thin border-gray-300 rounded-full">
+          <User2 className="h-8 w-8 text-neutral-700" />
           </div>
         )}
         <div className="flex flex-col">

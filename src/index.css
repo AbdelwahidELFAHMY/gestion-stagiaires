@@ -35,7 +35,12 @@
   --text-size13: 13px;
   --text-size14: 14px;
   --text-size15: 15px;
+  --text-size16: 16px;
+  --text-size17: 17px;
+  --text-size18: 18px;
+  --text-size19: 19px;
   --text-size20: 20px;
+  --text-size50: 50px;
   --breakpoint-3xl: 1920px;
   --border-width-thin: 1px;
   --color-custom-600: oklch(0.35 0.06 295);

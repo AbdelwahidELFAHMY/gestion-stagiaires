@@ -11,17 +11,19 @@ export const SujetStageStatus = {
   ACCEPTE: "ACCEPTE",
 };
 
+export const StageType = {
+  INITIATION: "INITIATION",
+  STAGE_PFA: "STAGE_PFA",
+  STAGE_PFE: "STAGE_PFE",
+};
+
 export const TacheStatus = {
   A_FAIRE: "A_FAIRE",
   EN_COURS: "EN_COURS",
   TERMINE: "TERMINE",
 };
 
-export const StageType = {
-  INITIATION: "INITIATION",
-  STAGE_PFA: "STAGE_PFA",
-  STAGE_PFE: "STAGE_PFE",
-};
+
 
 export const EntretienResult = {
   ECHEC: "ECHEC",

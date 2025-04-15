@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { AiOutlineSend, AiOutlineComment } from "react-icons/ai";
-import { UserCircle2 } from "lucide-react";
+import { User2 } from "lucide-react";
 import { FiAlertCircle } from "react-icons/fi";
 import Skeleton from "react-loading-skeleton";
 import GetImageFromURL from "../../../utils/getImageFromURL";
@@ -162,6 +162,22 @@ const Messaging = () => {
         <p className="text-sm text-gray-500 mt-2">
           Soyez le premier à commenter
         </p>
+        <div className="pt-40 text-size14 flex items-center">
+        <input
+          type="text"
+          placeholder="Informer votre équipe..."
+          value={newMessage}
+          onChange={(e) => setNewMessage(e.target.value)}
+          onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
+          className="w-full p-2 border-1 border-gray-200 focus:ring-1 focus:ring-gray-300 focus:outline-none rounded"
+        />
+        <button
+          onClick={handleSendMessage}
+          className="ml-2 bg-blue-500 hover:cursor-pointer text-white p-2 rounded flex items-center justify-center"
+        >
+          <AiOutlineSend size={16} />
+        </button>
+      </div>
       </div>
     );
   }
@@ -188,7 +204,9 @@ const Messaging = () => {
                     className="h-10 w-10 rounded-full border-thin object-cover"
                   />
                 ) : (
-                  <UserCircle2 className="h-10 w-10 text-neutral-800" />
+                  <div className="p-1 bg-gray-200 border-thin border-gray-300 rounded-full">
+                  <User2 className="h-8 w-8 text-neutral-700" />
+                  </div>
                 )}
                 <div className="flex justify-between">
                   <div className="flex flex-col">

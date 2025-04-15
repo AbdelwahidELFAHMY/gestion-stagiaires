@@ -1,6 +1,6 @@
-import Navbar from '../components/navbar';
-import { motion } from 'framer-motion';
-import { DeskIllustration } from '../assets/Illustration';
+import Navbar from "../components/navbar";
+import { motion } from "framer-motion";
+import { DeskIllustration } from "../assets/Illustration";
 
 // Composant pour une étoile SVG
 const Star = ({ x, y, size, delay }) => (
@@ -25,22 +25,21 @@ const Star = ({ x, y, size, delay }) => (
   </motion.svg>
 );
 
-
 // Composant pour le fond étoilé
 const StarsBackground = () => {
   const stars = Array.from({ length: 100 }, (_, i) => ({
     id: i,
-    x: Math.random() * 100 + '%',
-    y: Math.random() * 100 + '%',
-    size: Math.random() * 15 + 'px',
+    x: Math.random() * 100 + "%",
+    y: Math.random() * 100 + "%",
+    size: Math.random() * 15 + "px",
     delay: Math.random() * 3,
   }));
-  
+
   // Composant pour les cartes de fonctionnalités avec animation au scroll
   const FeatureCard = ({ icon, title, description, index }) => {
     const ref = useRef(null);
     const isInView = useInView(ref, { once: true, margin: "-100px 0px" });
-    
+
     return (
       <motion.div
         ref={ref}
@@ -58,16 +57,16 @@ const StarsBackground = () => {
       </motion.div>
     );
   };
-  
+
   // Particules flottantes pour l'arrière-plan
   const Particles = () => {
     const particles = Array.from({ length: 20 }, (_, i) => ({
       id: i,
-      x: Math.random() * 100 + '%',
-      y: Math.random() * 100 + '%',
+      x: Math.random() * 100 + "%",
+      y: Math.random() * 100 + "%",
       size: Math.random() * 8 + 2,
     }));
-  
+
     return (
       <div className="absolute inset-0 overflow-hidden">
         {particles.map((particle) => (
@@ -140,9 +139,6 @@ const WaveIllustration = () => (
   </div>
 );
 
-
-
-
 const AnimatedButton = ({ href, primary, children }) => (
   <motion.a
     href={href}
@@ -151,8 +147,8 @@ const AnimatedButton = ({ href, primary, children }) => (
         ? "bg-gradient-to-r from-indigo-800 to-blue-700 text-white"
         : "bg-transparent border-thin border-white hover:bg-white hover:text-indigo-700 text-white"
     } py-2 px-4 rounded-lg shadow-lg transition duration-300 font-medium text-size13 z-20`}
-    whileHover={{ 
-      boxShadow: "0 10px 25px -5px rgba(66, 85, 255, 0.4)" 
+    whileHover={{
+      boxShadow: "0 10px 25px -5px rgba(66, 85, 255, 0.4)",
     }}
     whileTap={{ scale: 0.98 }}
   >
@@ -177,38 +173,130 @@ const AnimatedButton = ({ href, primary, children }) => (
 function Home() {
   return (
     <>
-      <div className="h-screen relative overflow-hidden bg-gradient-to-br from-blue-950 via-blue-950 to-blue-900 text-white">
-        <Navbar/>
-        <StarsBackground /> 
+      <div className="h-screen relative overflow-hidden bg-gradient-to-tr from-indigo-950 via-indigo-950 to-blue-900 text-white">
+        <Navbar />
+        <StarsBackground />
         <div className="max-w-screen-xl mx-auto px-6 sm:px-10 lg:px-10 lg:py-20">
-          
-          
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
               <motion.h1
-                className="text-4xl font-extrabold sm:text-6xl"
-                initial={{ opacity: 0, y: -50 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1 }}
+                className="text-4xl z-60 font-extrabold sm:text-size50 lg:text-5xl leading-[1.1] sm:leading-[1.1] space-y-2 sm:space-y-3"
+                initial="hidden"
+                animate="visible"
+                variants={{
+                  hidden: { opacity: 0 },
+                  visible: {
+                    opacity: 1,
+                    transition: {
+                      staggerChildren: 0.15,
+                      delayChildren: 0.1
+                    }
+                  }
+                }}
               >
-                <span className="block">Simplifiez la gestion de</span>
-                <span className="block text-indigo-300"> vos stagiaires</span>
+                {/* Ligne 1 */}
+                <motion.span
+                  className="block"
+                  variants={{
+                    hidden: { opacity: 0, y: 15 },
+                    visible: { 
+                      opacity: 1, 
+                      y: 0,
+                      transition: {
+                        duration: 0.8,
+                        ease: [0.16, 0.77, 0.47, 0.97] // Courbe plus smooth
+                      }
+                    }
+                  }}
+                >
+                  Simplifiez, Optimisez
+                </motion.span>
+
+                {/* Ligne 2 */}
+                <motion.span
+                  className="block"
+                  variants={{
+                    hidden: { opacity: 0, y: 15 },
+                    visible: { 
+                      opacity: 1, 
+                      y: 0,
+                      transition: {
+                        duration: 0.8,
+                        ease: [0.16, 0.77, 0.47, 0.97],
+                        delay: 0.1
+                      }
+                    }
+                  }}
+                >
+                  la processus des stages,
+                </motion.span>
+
+                {/* Ligne 3 avec effet gradient animé */}
+                <motion.span
+                  className="block"
+                  variants={{
+                    hidden: { opacity: 0, y: 15 },
+                    visible: { 
+                      opacity: 1, 
+                      y: 0,
+                      transition: {
+                        duration: 0.8,
+                        ease: [0.16, 0.77, 0.47, 0.97],
+                        delay: 0.2
+                      }
+                    }
+                  }}
+                >
+                  <motion.span
+                    className="bg-gradient-to-r from-rose-400 via-purple-500 to-indigo-400 bg-clip-text text-transparent"
+                    animate={{
+                      backgroundPosition: ["0% 50% ", "100% 50%"],
+                    }}
+                    transition={{
+                      duration: 10,
+                      repeat: Infinity,
+                      repeatType: "reverse",
+                      ease: "linear",
+                    }}
+                    style={{
+                      backgroundSize: "200% 200%",
+                    }}
+                  >
+                    la gestion des stagiaires
+                  </motion.span>
+                </motion.span>
               </motion.h1>
               <motion.p
-                className="text-lg sm:text-xl text-gray-200 z-30"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1.2, delay: 0.2 }}
+                className="text-size15 sm:text-size17 text-gray-50"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ 
+                  opacity: 1, 
+                  y: 0,
+                  transition: {
+                    duration: 1,
+                    ease: [0.16, 0.77, 0.47, 0.97],
+                    delay: 0.3
+                  }
+                }}
               >
-                Propulsez votre programme de stages vers l'excellence avec une plateforme intelligente qui automatise le suivi, optimise l'apprentissage et maximise le potentiel de chaque stagiaire.
+                Propulsez votre programme de stages vers l'excellence avec une
+                plateforme intelligente qui automatise le suivi, optimise
+                l'apprentissage et maximise le potentiel de chaque stagiaire.
               </motion.p>
-              
-            <motion.div 
+
+              <motion.div
                 className="flex flex-wrap gap-4 pt-4"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.5 }}
-              >
+                initial={{ opacity: 0, y: 10 }}
+        animate={{ 
+          opacity: 1, 
+          y: 0,
+          transition: {
+            duration: 0.8,
+            ease: [0.16, 0.77, 0.47, 0.97],
+            delay: 0.3
+          }
+        }}
+        >
                 <AnimatedButton href="#features" primary>
                   Découvrir nos solutions
                 </AnimatedButton>
@@ -216,44 +304,106 @@ function Home() {
                   Demander une démo
                 </AnimatedButton>
               </motion.div>
-            </div>
-            <DeskIllustration />
+            </div><motion.div
+      initial={{ opacity: 0, x: 20 }}
+      animate={{ 
+        opacity: 1, 
+        x: 0,
+        transition: {
+          duration: 1,
+          ease: [0.16, 0.77, 0.47, 0.97],
+          delay: 0.3
+        }
+      }}
+    >
+      <DeskIllustration />
+    </motion.div>
           </div>
         </div>
         <WaveIllustration />
-      </div>  
+      </div>
 
       {/* Features Section */}
       <div className="bg-custom-600 to-blue-900 py-16" id="features">
         <div className="max-w-screen-xl mx-auto px-6 sm:px-12 lg:px-16">
-          <h2 className="text-4xl font-bold text-center text-blue-900 mb-12">Fonctionnalités clés</h2>
+          <h2 className="text-4xl font-bold text-center text-blue-900 mb-12">
+            Fonctionnalités clés
+          </h2>
           <div className="grid md:grid-cols-3 gap-12">
             <div className="flex flex-col items-center text-center bg-white p-8 rounded-lg shadow-lg">
               <div className="bg-indigo-500 p-4 rounded-full mb-6">
-                <svg className="w-12 h-12 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v12m6-6H6" />
+                <svg
+                  className="w-12 h-12 text-white"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M12 6v12m6-6H6"
+                  />
                 </svg>
               </div>
-              <h3 className="text-2xl font-semibold text-blue-900">Suivi en temps réel</h3>
-              <p className="text-gray-600 mt-4">Suivez les progrès de vos stagiaires en temps réel et générez des rapports détaillés.</p>
+              <h3 className="text-2xl font-semibold text-blue-900">
+                Suivi en temps réel
+              </h3>
+              <p className="text-gray-600 mt-4">
+                Suivez les progrès de vos stagiaires en temps réel et générez
+                des rapports détaillés.
+              </p>
             </div>
             <div className="flex flex-col items-center text-center bg-white p-8 rounded-lg shadow-lg">
               <div className="bg-indigo-500 p-4 rounded-full mb-6">
-                <svg className="w-12 h-12 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14l2-2 2 2m0 0l2-2 2 2m-2-2v4m0 0H6" />
+                <svg
+                  className="w-12 h-12 text-white"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M10 14l2-2 2 2m0 0l2-2 2 2m-2-2v4m0 0H6"
+                  />
                 </svg>
               </div>
-              <h3 className="text-2xl font-semibold text-blue-900">Évaluations interactives</h3>
-              <p className="text-gray-600 mt-4">Évaluez les performances des stagiaires à travers des questionnaires et des sessions interactives.</p>
+              <h3 className="text-2xl font-semibold text-blue-900">
+                Évaluations interactives
+              </h3>
+              <p className="text-gray-600 mt-4">
+                Évaluez les performances des stagiaires à travers des
+                questionnaires et des sessions interactives.
+              </p>
             </div>
             <div className="flex flex-col items-center text-center bg-white p-8 rounded-lg shadow-lg">
               <div className="bg-indigo-500 p-4 rounded-full mb-6">
-                <svg className="w-12 h-12 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 18c0 1.1.89 2 1.99 2h12c1.1 0 1.99-.9 1.99-2V8l-6-6z" />
+                <svg
+                  className="w-12 h-12 text-white"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 18c0 1.1.89 2 1.99 2h12c1.1 0 1.99-.9 1.99-2V8l-6-6z"
+                  />
                 </svg>
               </div>
-              <h3 className="text-2xl font-semibold text-blue-900">Gestion administrative</h3>
-              <p className="text-gray-600 mt-4">Gérez la documentation et les informations administratives liées aux stagiaires facilement.</p>
+              <h3 className="text-2xl font-semibold text-blue-900">
+                Gestion administrative
+              </h3>
+              <p className="text-gray-600 mt-4">
+                Gérez la documentation et les informations administratives liées
+                aux stagiaires facilement.
+              </p>
             </div>
           </div>
         </div>

@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import axiosInstance from "../../../utils/axiosInstance";
 import { Document, Page } from "react-pdf";
 import { handleDownload } from "../../../utils/handleDownloadFile";
+import { handleViewFile } from "../../../utils/handleViewFile";
 
 export default function AcademicInfos({ academicInfos }) {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
@@ -40,27 +41,6 @@ export default function AcademicInfos({ academicInfos }) {
   };
 
 
-  const handleViewFile = async (filePath) => {
-    try {
-      const response = await axiosInstance.get("/files/view", {
-        params: { filePath },
-        responseType: "blob",
-      });
-
-      // Solution alternative sans react-pdf
-      const blob = new Blob([response.data], {
-        type: response.headers["content-type"],
-      });
-      const url = window.URL.createObjectURL(blob);
-      window.open(url, "_blank");
-
-      // Nettoyage après 100ms
-      setTimeout(() => window.URL.revokeObjectURL(url), 100);
-    } catch (error) {
-      console.error("Error viewing file:", error);
-      // Afficher une notification d'erreur
-    }
-  };
 
   return (
     <div className="space-y-3">

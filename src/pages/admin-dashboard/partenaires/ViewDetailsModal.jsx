@@ -12,6 +12,7 @@ import {
   User as UserIcon,
   XCircle,
   CheckCircle,
+  User2,
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import axiosInstance from "../../../utils/axiosInstance";
@@ -251,12 +252,9 @@ export default function ViewDetailsModal({ entrepriseId, onClose }) {
                             className="h-16 w-16 rounded-full object-cover border border-gray-200 dark:border-gray-700"
                           />
                         ) : (
-                          <div className="h-16 w-16 rounded-full bg-gradient-to-br from-purple-500 to-purple-600 flex items-center justify-center text-white text-xl font-bold">
-                            {company.admin.fullName
-                              .split(" ")
-                              .map((n) => n[0])
-                              .join("")}
-                          </div>
+                          <div className="p-1 bg-gray-50 border-thin border-gray-100 rounded-full">
+          <User2 className="h-8 w-8 text-neutral-800" />
+          </div>
                         )}
                         <h4 className="text-xl justify-center font-semibold text-gray-900 dark:text-gray-100">
                           {company.admin.fullName}

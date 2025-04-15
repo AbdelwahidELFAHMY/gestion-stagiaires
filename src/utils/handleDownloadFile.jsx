@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 import axiosInstance from "./axiosInstance";
 
 export const handleDownload = async (filePath, fileName) => {
@@ -19,6 +20,6 @@ export const handleDownload = async (filePath, fileName) => {
     window.URL.revokeObjectURL(url);
   } catch (error) {
     console.error("Download error:", error);
-    // Ajoutez ici la gestion des erreurs (notification, etc.)
+    toast.error("Une erreur est servenue lors de telechargement, Veuillez Ressayer!")
   }
 };

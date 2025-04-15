@@ -1,13 +1,14 @@
+import CompanyInfo from "../../../components/CompanyInfo";
 import Notifications from "../../../components/Notifications";
 import axiosInstance from "../../../utils/axiosInstance";
 import { useEffect, useState } from "react";
 import { getUsernameFromToken } from "../../../utils/getUsernameFromToken";
-import Menu from "./Menu";
-import CompanyInfo from "../../../components/CompanyInfo";
-import { UserCircle2 } from "lucide-react";
+import { User, User2, UserCircle2 } from "lucide-react";
+import GetImageFromURL from "../../../utils/getImageFromURL";
 import SearchBar from "../../../components/SearchBar";
 
-const HeaderStagiaire = () => {
+const HeaderEncadrant= () => {
+  
   const [userHeader, setUserHeader] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -54,19 +55,38 @@ const HeaderStagiaire = () => {
       </div>
     );
   }
-
   return (
     <header className="flex justify-between items-center h-16 bg-white px-6 py-4 border-b border-gray-200">
       <CompanyInfo />
+
 
       <div className="flex items-center space-x-4">
         <SearchBar />
         <Notifications notifications={userHeader.notifications || []} />
 
-        <Menu userData={{nom:userHeader.nom,  prenom:userHeader.prenom, photo:userHeader.photo}} />
+      <div className="flex items-center space-x-2 cursor-pointer p-2 rounded-md hover:bg-gray-100 transition-all duration-300">
+        {userHeader?.photo ? (
+          <GetImageFromURL 
+          logoUrl={`${axiosInstance.defaults.baseURL.replace(
+            "/api",
+            ""
+          )}/photos/${userHeader.photo.replace("photos/", "")}`}
+            alt="photo" 
+            className="h-11 w-11 rounded-full border-thin object-cover"
+          />
+        ) : (
+          <div className="p-1 bg-gray-200 border-thin border-gray-300 rounded-full">
+          <User2 className="h-8 w-8 text-neutral-700" />
+          </div>
+        )}
+        <p className="text-size13 font-semibold">
+          {userHeader ? `${userHeader.prenom} ${userHeader.nom}` :"nom-prenom"}
+        </p>
       </div>
+      </div>
+
     </header>
   );
 };
 
-export default HeaderStagiaire;
+export default HeaderEncadrant;
