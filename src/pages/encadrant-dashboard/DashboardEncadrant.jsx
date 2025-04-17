@@ -2,13 +2,12 @@
 import { useState, useEffect } from "react";
 import Sidebar from "./SidebarEncadrant";
 import DashboardView from "./DashboardView";
-import CalendrierView from "./Stages";
-import MessagerieView from "./Stages";
-import ParametresView from "./Stages";
+import Parametres from "./Parametres";
 import HeaderEncadrant from "./Header/HeaderEncadrant";
 import ListTaches from "./taches/ListTaches";
 import Livrables from "./livrables/Livrables";
 import SujetStage from "./sujets_stage/SujetStage";
+import Presence from "./Presence/Presence";
 
 export default function DashboardEncadrant() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -35,12 +34,10 @@ export default function DashboardEncadrant() {
         return <Livrables />;
         case "sujetStage":
           return <SujetStage />;
-      case "calendrier":
-        return <CalendrierView />;
-      case "messagerie":
-        return <MessagerieView />;
+      case "presence":
+        return <Presence />;
       case "parametres":
-        return <ParametresView />;
+        return <Parametres />;
       default:
         return <DashboardView />;
     }

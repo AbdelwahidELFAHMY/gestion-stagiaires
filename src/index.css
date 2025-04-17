@@ -54,7 +54,17 @@
   --color-avocado-600: oklch(0.53 0.12 118.34);
   --ease-fluid: cubic-bezier(0.3, 0, 0, 1);
   --ease-snappy: cubic-bezier(0.2, 0, 0, 1);
+
+--blur-smooth: 1px;
+  --backdrop-blur-smooth: blur(var(--blur-smooth));
   /* ... */
+}
+
+
+.backdrop-blur-smooth {
+  --tw-backdrop-blur: var(--backdrop-blur-smooth);
+  -webkit-backdrop-filter: var(--tw-backdrop-blur);
+  backdrop-filter: var(--tw-backdrop-blur);
 }
 
 .no-tailwind * {

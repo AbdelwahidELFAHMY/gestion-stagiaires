@@ -1,6 +1,7 @@
 import { AiOutlineRight } from "react-icons/ai";
 import { FaMoon, FaSun } from "react-icons/fa";
 import HeaderInfo from "./HeaderInfo";
+import SearchBar from "../../../components/SearchBar";
 
 export default function Header({ isDarkMode, setIsDarkMode, activeTab }) {
   return (
@@ -38,6 +39,7 @@ export default function Header({ isDarkMode, setIsDarkMode, activeTab }) {
           </button>
         </div>
 
+        <SearchBar/>
         <HeaderInfo />
       </div>
     </header>

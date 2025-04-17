@@ -1,4 +1,5 @@
 // SearchModal.js
+import { X } from "lucide-react";
 import { useState, useEffect } from "react";
 
 const SearchModal = ({ query, onClose }) => {
@@ -17,10 +18,10 @@ const SearchModal = ({ query, onClose }) => {
   }, [query]);
 
   return (
-    <div className="absolute top-16 left-3/4 transform -translate-x-1/2 w-80 bg-white shadow-lg rounded-lg mt-2 p-4 z-10">
-      <div className="text-gray-700">
+    <div className="absolute top-11 left-1/4 min-h-36 items-center justify-center transform -translate-x-1/2 w-90 bg-white dark:bg-gray-700 shadow-md rounded-md mt-2 p-4 z-10">
+      <div className="text-gray-700 h-full justify-center items-center">
         {results.length === 0 ? (
-          <p className="text-gray-500">Aucun résultat trouvé.</p>
+          <p className="text-gray-600 dark:text-gray-200">Aucun résultat trouvé.</p>
         ) : (
           <ul>
             {results.map((result, index) => (
@@ -31,7 +32,7 @@ const SearchModal = ({ query, onClose }) => {
           </ul>
         )}
       </div>
-      <button onClick={onClose} className="absolute top-2 right-2 text-gray-500">X</button>
+      <button onClick={onClose} className="absolute cursor-pointer rounded-full dark:bg-gray-600 bg-gray-100 p-1 top-2 right-2 dark:text-gray-200 text-gray-600"><X size={18}/></button>
     </div>
   );
 };

@@ -1,6 +1,44 @@
 import Navbar from "../components/navbar";
 import { motion } from "framer-motion";
 import { DeskIllustration } from "../assets/Illustration";
+import { Decor } from "../assets/Decor";
+import FeatureCard from "./FeatureCard";
+import { BarChart3, CalendarClockIcon, Clock, LucideAward, ShieldCheck, Users2Icon } from "lucide-react";
+import Footer from "../components/Footer ";
+
+
+const features = [
+  {
+    icon: <Users2Icon size={24} className="text-white" />,
+    title: "Suivi personnalisé",
+    description: "Suivez le parcours de chaque stagiaire avec des tableaux de bord personnalisés et des indicateurs de progression clairs."
+  },
+  {
+    icon: <BarChart3 size={24} className="text-white" />,
+    title: "Analyses détaillées",
+    description: "Obtenez des insights précis sur les performances de votre programme de stages et de vos stagiaires."
+  },
+  {
+    icon: <CalendarClockIcon size={24} className="text-white" />,
+    title: "Planification avancée",
+    description: "Planifiez les formations, réunions et évaluations avec un calendrier intuitif synchronisé pour tous les participants."
+  },
+  {
+    icon: <LucideAward size={24} className="text-white" />,
+    title: "Certifications",
+    description: "Créez et distribuez des certificats de compétences pour valoriser le parcours de vos stagiaires."
+  },
+  {
+    icon: <Clock size={24} className="text-white" />,
+    title: "Automatisation",
+    description: "Automatisez les tâches répétitives comme les rappels, rapports et notifications pour gagner du temps."
+  },
+  {
+    icon: <ShieldCheck size={24} className="text-white" />,
+    title: "Conformité assurée",
+    description: "Assurez-vous que votre programme de stages respecte toutes les réglementations en vigueur."
+  },
+];
 
 // Composant pour une étoile SVG
 const Star = ({ x, y, size, delay }) => (
@@ -24,6 +62,8 @@ const Star = ({ x, y, size, delay }) => (
     <polygon points="12 2 15 9 22 9 16 14 18 21 12 17 6 21 8 14 2 9 9 9" />
   </motion.svg>
 );
+
+
 
 // Composant pour le fond étoilé
 const StarsBackground = () => {
@@ -106,38 +146,34 @@ const StarsBackground = () => {
   );
 };
 
-const SvgIllustration = () => (
-  <svg className="absolute bottom-0 left-0 w-full z-0" viewBox="0 0 1440 320">
-    <path
-      fill="#000000"
-      fillOpacity="0.3"
-      d="M0,192L48,202.7C96,213,192,235,288,224C384,213,480,171,576,144C672,117,768,107,864,106.7C960,107,1056,117,1152,122.7C1248,128,1344,128,1392,128L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
-    ></path>
-  </svg>
-);
 
 const WaveIllustration = () => (
-  <div className="absolute bottom-0 left-0 w-full overflow-hidden z-10">
+  <div className="absolute bottom-0 left-0 w-full overflow-hidden z-10 pointer-events-none">
     <svg className="w-full" viewBox="0 0 1440 320" preserveAspectRatio="none">
+      {/* Couche 1 - nuage foncé et flouté avec une touche de violet */}
       <motion.path
         initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 0.2, y: 0 }}
-        transition={{ duration: 1.5, delay: 0.5 }}
-        fill="#ffffff"
-        fillOpacity="0.3"
-        d="M0,192L48,208C96,224,192,256,288,245.3C384,235,480,181,576,165.3C672,149,768,171,864,192C960,213,1056,235,1152,218.7C1248,203,1344,149,1392,122.7L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
-      ></motion.path>
+        animate={{ opacity: 0.15, y: 0 }}
+        transition={{ duration: 2, delay: 0.3 }}
+        fill="#3f2a7b" // violet profond avec une teinte bleutée
+        style={{ filter: "blur(2px)" }}
+        d="M0,192L48,208C96,224,192,256,288,245.3C384,235,480,181,576,165.3C672,149,768,171,864,192C960,213,1056,235,1152,218.7C1248,203,1344,149,1392,122.7L1440,96L1440,320L0,320Z"
+      />
+      
+      {/* Couche 2 - plus claire, avec une touche violette */}
       <motion.path
         initial={{ opacity: 0, y: 80 }}
-        animate={{ opacity: 0.5, y: 0 }}
-        transition={{ duration: 1.8, delay: 0.8 }}
-        fill="#ffffff"
-        fillOpacity="0.2"
-        d="M0,96L48,128C96,160,192,224,288,224C384,224,480,160,576,138.7C672,117,768,139,864,154.7C960,171,1056,181,1152,165.3C1248,149,1344,107,1392,85.3L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
-      ></motion.path>
+        animate={{ opacity: 0.25, y: 0 }}
+        transition={{ duration: 2.2, delay: 0.6 }}
+        fill="#6a4f96" // violet plus doux avec une nuance bleue
+        style={{ filter: "blur(2px)" }}
+        d="M0,96L48,128C96,160,192,224,288,224C384,224,480,160,576,138.7C672,117,768,139,864,154.7C960,171,1056,181,1152,165.3C1248,149,1344,107,1392,85.3L1440,64L1440,320L0,320Z"
+      />
     </svg>
   </div>
 );
+
+
 
 const AnimatedButton = ({ href, primary, children }) => (
   <motion.a
@@ -319,95 +355,111 @@ function Home() {
       <DeskIllustration />
     </motion.div>
           </div>
+
         </div>
         <WaveIllustration />
       </div>
+      <section className="py-20 bg-gradient-to-br from-blue-950 via-indigo-950 to-violet-950">
+        <div className="max-w-screen-xl mx-auto px-6 sm:px-10">
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
+            <motion.div
+              className="lg:w-1/2"
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true, margin: "0px 0px -100px 0px" }}
+            >
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+                Une interface conçue pour l'efficacité
+              </h2>
+              <p className="text-lg text-gray-300 mb-8">
+                Notre tableau de bord intuitif vous donne un contrôle total sur 
+                le processus de stage, avec des visualisations claires et des 
+                outils puissants pour suivre chaque stagiaire.
+              </p>
+              <div className="space-y-4">
+                <div className="flex items-start">
+                  <div className="flex-shrink-0 bg-indigo-500 rounded-full p-1 mt-1">
+                    <svg className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <p className="ml-3 text-gray-300">Suivi en temps réel des stagiaires</p>
+                </div>
+                <div className="flex items-start">
+                  <div className="flex-shrink-0 bg-indigo-500 rounded-full p-1 mt-1">
+                    <svg className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <p className="ml-3 text-gray-300">Gestion simplifiée des documents</p>
+                </div>
+                <div className="flex items-start">
+                  <div className="flex-shrink-0 bg-indigo-500 rounded-full p-1 mt-1">
+                    <svg className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <p className="ml-3 text-gray-300">Analyses et rapports automatisés</p>
+                </div>
+              </div>
+            </motion.div>
 
-      {/* Features Section */}
-      <div className="bg-custom-600 to-blue-900 py-16" id="features">
-        <div className="max-w-screen-xl mx-auto px-6 sm:px-12 lg:px-16">
-          <h2 className="text-4xl font-bold text-center text-blue-900 mb-12">
-            Fonctionnalités clés
-          </h2>
-          <div className="grid md:grid-cols-3 gap-12">
-            <div className="flex flex-col items-center text-center bg-white p-8 rounded-lg shadow-lg">
-              <div className="bg-indigo-500 p-4 rounded-full mb-6">
-                <svg
-                  className="w-12 h-12 text-white"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M12 6v12m6-6H6"
-                  />
-                </svg>
-              </div>
-              <h3 className="text-2xl font-semibold text-blue-900">
-                Suivi en temps réel
-              </h3>
-              <p className="text-gray-600 mt-4">
-                Suivez les progrès de vos stagiaires en temps réel et générez
-                des rapports détaillés.
-              </p>
-            </div>
-            <div className="flex flex-col items-center text-center bg-white p-8 rounded-lg shadow-lg">
-              <div className="bg-indigo-500 p-4 rounded-full mb-6">
-                <svg
-                  className="w-12 h-12 text-white"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M10 14l2-2 2 2m0 0l2-2 2 2m-2-2v4m0 0H6"
-                  />
-                </svg>
-              </div>
-              <h3 className="text-2xl font-semibold text-blue-900">
-                Évaluations interactives
-              </h3>
-              <p className="text-gray-600 mt-4">
-                Évaluez les performances des stagiaires à travers des
-                questionnaires et des sessions interactives.
-              </p>
-            </div>
-            <div className="flex flex-col items-center text-center bg-white p-8 rounded-lg shadow-lg">
-              <div className="bg-indigo-500 p-4 rounded-full mb-6">
-                <svg
-                  className="w-12 h-12 text-white"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 18c0 1.1.89 2 1.99 2h12c1.1 0 1.99-.9 1.99-2V8l-6-6z"
-                  />
-                </svg>
-              </div>
-              <h3 className="text-2xl font-semibold text-blue-900">
-                Gestion administrative
-              </h3>
-              <p className="text-gray-600 mt-4">
-                Gérez la documentation et les informations administratives liées
-                aux stagiaires facilement.
-              </p>
-            </div>
+            <motion.div
+              className="lg:w-1/2"
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              viewport={{ once: true }}
+            >
+              <Decor />
+            </motion.div>
           </div>
         </div>
+      </section>
+
+      
+      <section className=" bg-gradient-to-br from-indigo-950 to-blue-950">
+
+      <div id="features" className="max-w-screen-xl mx-auto px-6 sm:px-10 lg:px-10 py-14">
+        <motion.div
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
+          <h2 className="text-3xl sm:text-4xl font-bold mb-6">
+            <span className="text-indigo-100 bg-clip-text bg-gradient-to-r from-stellar-300 to-stellar-400">
+              Fonctionnalités puissantes
+            </span>
+          </h2>
+          <p className="text-gray-300 max-w-2xl mx-auto">
+            Découvrez comment notre plateforme transforme la gestion des stagiaires en une expérience fluide et efficace pour tous les acteurs impliqués.
+          </p>
+        </motion.div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {features.map((feature, index) => (
+            <FeatureCard 
+              key={index}
+              icon={feature.icon}
+              title={feature.title}
+              description={feature.description}
+              index={index}
+            />
+          ))}
+        </div>
       </div>
+      </section>
+
+      
+      {/* Footer */}
+      <section className="bg-gradient-to-t from-indigo-950 to-blue-950">  <Footer/>
+</section>
+
+
+  
     </>
   );
 }

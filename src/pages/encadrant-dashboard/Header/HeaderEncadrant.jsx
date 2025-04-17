@@ -3,9 +3,10 @@ import Notifications from "../../../components/Notifications";
 import axiosInstance from "../../../utils/axiosInstance";
 import { useEffect, useState } from "react";
 import { getUsernameFromToken } from "../../../utils/getUsernameFromToken";
-import { User, User2, UserCircle2 } from "lucide-react";
+import { Image, User, User2, UserCircle, UserCircle2 } from "lucide-react";
 import GetImageFromURL from "../../../utils/getImageFromURL";
 import SearchBar from "../../../components/SearchBar";
+import HesderSkeleton from "../../../components/HesderSkeleton";
 
 const HeaderEncadrant= () => {
   
@@ -38,23 +39,28 @@ const HeaderEncadrant= () => {
   }, [username]);
 
 
-  if (loading) {
-    return (
-      <div className="flex items-center space-x-2 p-2">
-        <div className="h-12 w-12 bg-gray-200 rounded-full animate-pulse"></div>
-        <div className="h-12 w-24 bg-gray-200 rounded animate-pulse"></div>
-      </div>
-    );
-  }
+    if (loading) {
+      <HesderSkeleton />
+    }
+  
+    if (error) {
+      return (
+        <header className="flex justify-between items-center h-16 bg-white px-6 py-4 border-b border-gray-200">
+          <div className="flex items-center space-x-2 p-2">
+            <Image className="h-11 w-11 rounded-full text-gray-500" />
+            <span>{error}</span>
+          </div>
+          <div className="flex items-center space-x-2 p-2">
+            <span>{error}</span>
+            <UserCircle className="h-12 w-12 text-gray-500" />
+          </div>
+        </header>
+      );
+    }
 
-  if (error) {
-    return (
-      <div className="flex items-center space-x-2 p-2 text-red-500">
-        <UserCircle2 className="h-12 w-12" />
-        <span>Error</span>
-      </div>
-    );
-  }
+
+
+
   return (
     <header className="flex justify-between items-center h-16 bg-white px-6 py-4 border-b border-gray-200">
       <CompanyInfo />

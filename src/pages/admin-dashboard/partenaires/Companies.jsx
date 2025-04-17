@@ -257,12 +257,12 @@ const Companies = () => {
             onClick={() => setShowAddModal(true)}
             className="bg-blue-500 text-white text-size14 cursor-pointer py-2 px-4 rounded"
           >
-            Ajouter une entreprise
+            Nouveau Partenaire
           </button>
         </div>
       </div>
 
-      <div className="mt-3 overflow-hidden rounded-md border">
+      <div className="mt-4 overflow-hidden rounded-md border-thin">
         <table className="min-w-full table-auto border-thin border-gray-50 dark:border-gray-500">
           <thead>
             <tr className="text-size14 text-gray-700 dark:text-gray-400">
@@ -319,21 +319,19 @@ const Companies = () => {
                   </button>
                   {activeDropdown === company.entrepriseId && (
                     <div
-                      className="fixed  mb-2 right-0 cursor-pointer w-38 dark:bg-neutral-800 bg-white shadow-lg rounded-md z-10"
+                      className="fixed  mb-2 right-0 cursor-pointer w-38 dark:bg-gray-900 bg-white shadow-md rounded-md z-10"
                       onMouseLeave={closeDropdown}
                       style={{
-                        // Positionnement dynamique
                         top: `${
                           document
                             .getElementById(`action-btn-${company.entrepriseId}`)
                             ?.getBoundingClientRect().bottom + window.scrollY
                         }px`,
-                        // Pour la version mobile/tablette
                         left: 'auto',
                         right: '16px'
                       }}
                     >
-                      <ul className="py-2 text-sm dark:text-gray-200 text-gray-700 z-50">
+                      <ul className="py-2 text-size15 dark:text-gray-200 text-gray-700 z-50">
                         <li
                           className="px-4 py-2 dark:hover:bg-neutral-700 hover:bg-gray-100 flex items-center gap-2.5"
                           onClick={() => {
@@ -436,7 +434,6 @@ const Companies = () => {
 
 export default Companies;
 
-// Composant Toggle
 const Toggle = ({ isActive: propIsActive, onToggle }) => {
   const [localIsActive, setLocalIsActive] = useState(propIsActive);
   const [isProcessing, setIsProcessing] = useState(false);

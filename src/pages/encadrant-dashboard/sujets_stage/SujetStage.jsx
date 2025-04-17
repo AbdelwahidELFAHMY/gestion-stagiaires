@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import  { useState, useEffect } from "react";
 import axiosInstance from "../../../utils/axiosInstance";
 import { getUsernameFromToken } from "../../../utils/getUsernameFromToken";
 import { toast } from "react-toastify";
 import { handleViewFile } from "../../../utils/handleViewFile";
-import { FaPlus, FaEdit, FaTrash } from "react-icons/fa";
+import { FaPlus, } from "react-icons/fa";
 import AddUpdateSujetStageModal from "./AddUpdateSujetStageModal";
 import { FileCog2, FileEdit, Trash2 } from "lucide-react";
 
@@ -90,8 +90,8 @@ const SujetStage = () => {
   return (
     <div className="container">
       <div className="flex justify-between items-center mb-6">
-        <span className="flex items-center gap-2 text-xl font-semibold bg-gradient-to-r from-neutral-700 via-neutral-800 to-gray-900 bg-clip-text text-transparent">
-          <FileCog2 size={23} color="gray" />
+        <span className="flex items-center gap-4 text-xl font-semibold bg-gradient-to-r from-neutral-700 via-neutral-800 to-gray-900 bg-clip-text text-transparent">
+          <FileCog2 size={22} color="gray" />
           Gestion des Sujets de Stage
         </span>
 
@@ -129,7 +129,7 @@ const SujetStage = () => {
             disabled={loading}
           >
             <FaPlus />
-            <span>Ajouter un sujet</span>
+            <span>Nouveau</span>
           </button>
         </div>
       </div>

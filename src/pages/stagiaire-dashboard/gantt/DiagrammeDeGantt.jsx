@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import {  useLayoutEffect, useRef, useState } from 'react';
 import { gantt } from 'dhtmlx-gantt';
 import 'dhtmlx-gantt/codebase/dhtmlxgantt.css';
 import axiosInstance from '../../../utils/axiosInstance';
@@ -11,7 +11,6 @@ export default function DiagrammeDeGantt() {
   const [error, setError] = useState(null);
   const [ganttData, setGanttData] = useState(null);
 
-  // Configuration du Gantt
   useLayoutEffect(() => {
     let isMounted = true;
 

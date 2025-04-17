@@ -225,7 +225,7 @@ const SidebarStagiaire = ({ setActiveComponent }) => {
                             <User2 className="h-8 w-8 text-neutral-800" />
                           </div>
                         )}
-                        <span className="text-size11 text-gray-800">
+                        <span className="text-size13 text-gray-800">
                           {member.name}
                         </span>
                       </motion.li>
@@ -259,7 +259,7 @@ const SidebarStagiaire = ({ setActiveComponent }) => {
               <div className="flex flex-col md:flex-row gap-8">
                 {/* Colonne photo */}
                 <div className="md:w-1/4 flex justify-center">
-                  <div className="w-40 h-40 rounded-full overflow-hidden border-thin border-white">
+                  <div className="w-40 h-40 rounded overflow-hidden border-thin border-white">
                     {memberDetails.photo ? (
                       <GetImageFromURL
                         logoUrl={`${axiosInstance.defaults.baseURL.replace(
@@ -270,7 +270,7 @@ const SidebarStagiaire = ({ setActiveComponent }) => {
                           ""
                         )}`}
                         alt={`${memberDetails.prenom} ${memberDetails.nom}`}
-                        className="h-full w-full rounded-full object-cover"
+                        className="h-full w-full rounded object-cover"
                       />
                     ) : (
                       <UserCircle2 className="h-36 w-36 text-gray-700" />
@@ -286,7 +286,7 @@ const SidebarStagiaire = ({ setActiveComponent }) => {
                       <span className="relative flex h-5 w-5">
                         <FileText className="h-5 w-5 text-blue-600" />
                       </span>
-                      <h2 className="text-size11 font-medium text-gray-800">
+                      <h2 className="text-size13 font-medium text-gray-800">
                         Informations du Membre
                       </h2>
                     </div>
@@ -302,46 +302,46 @@ const SidebarStagiaire = ({ setActiveComponent }) => {
                   {/* Grille d'informations */}
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-1.5">
-                      <p className="text-size11 font-medium text-gray-500 uppercase tracking-wider">
+                      <p className="text-size13 font-medium text-gray-500 uppercase tracking-wider">
                         Nom complet
                       </p>
-                      <p className="text-size11 font-semibold text-gray-800">
+                      <p className="text-size13 font-semibold text-gray-800">
                         {memberDetails.prenom} {memberDetails.nom}
                       </p>
                     </div>
 
                     <div className="space-y-1.5">
-                      <p className="text-size11 font-medium text-gray-500 uppercase tracking-wider">
+                      <p className="text-size13 font-medium text-gray-500 uppercase tracking-wider">
                         Username
                       </p>
-                      <p className="text-size11 font-medium text-gray-800">
+                      <p className="text-size13 font-medium text-gray-800">
                         {memberDetails.username}
                       </p>
                     </div>
 
                     <div className="space-y-1.5">
-                      <p className="text-size11 font-medium text-gray-500 uppercase tracking-wider">
+                      <p className="text-size13 font-medium text-gray-500 uppercase tracking-wider">
                         Email
                       </p>
-                      <p className="text-size11 font-medium text-gray-800">
+                      <p className="text-size13 font-medium text-gray-800">
                         {memberDetails.email || "Non renseigné"}
                       </p>
                     </div>
 
                     <div className="space-y-1.5">
-                      <p className="text-size11 font-medium text-gray-500 uppercase tracking-wider">
+                      <p className="text-size13 font-medium text-gray-500 uppercase tracking-wider">
                         Téléphone
                       </p>
-                      <p className="text-size11 font-medium text-gray-800">
+                      <p className="text-size13 font-medium text-gray-800">
                         {memberDetails.phone || "Non renseigné"}
                       </p>
                     </div>
 
                     <div className="space-y-1.5">
-                      <p className="text-size11 font-medium text-gray-500 uppercase tracking-wider">
+                      <p className="text-size13 font-medium text-gray-500 uppercase tracking-wider">
                         Adresse
                       </p>
-                      <p className="text-size11 font-medium text-gray-800">
+                      <p className="text-size13 font-medium text-gray-800">
                         {memberDetails.adresse || "Non renseignée"}
                       </p>
                     </div>

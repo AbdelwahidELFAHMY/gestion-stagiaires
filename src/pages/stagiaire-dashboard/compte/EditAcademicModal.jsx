@@ -52,7 +52,7 @@ export default function EditAcademicModal({
         </div>
         
         <form onSubmit={handleSubmit} className="p-6 space-y-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {[
               { label: "CNE", name: "cne" },
               { label: "CIN", name: "cin" },
@@ -61,8 +61,8 @@ export default function EditAcademicModal({
               { label: "Établissement", name: "etablissement" },
               { label: "Université", name: "universite" },
             ].map((field) => (
-              <div key={field.name} className="space-y-2">
-                <label className="flex items-center text-size10 font-medium text-gray-500 uppercase tracking-wide">
+              <div key={field.name} >
+                <label className="mb-1 flex items-center text-size10 font-medium text-gray-500 uppercase tracking-wide">
                   {field.label}
                 </label>
                 <input
@@ -94,7 +94,7 @@ export default function EditAcademicModal({
                   hover:file:bg-blue-100"
               />
               {cvFile && (
-                <p className="text-size11 text-gray-600 mt-1">
+                <p className="text-size12 text-gray-600 mt-1">
                   Fichier sélectionné: {cvFile.name}
                 </p>
               )}

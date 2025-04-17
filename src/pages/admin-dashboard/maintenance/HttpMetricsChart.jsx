@@ -44,9 +44,7 @@ const HttpMetricsChart = () => {
 
         const pieData = calculatePercentages(response.data);
         setPieData(pieData);
-        setTimeout(() => {
           setLoading(false);
-        }, 1000); 
       } catch (error) {
         console.error("Erreur lors de la récupération des données:", error);
         setLoading(false);

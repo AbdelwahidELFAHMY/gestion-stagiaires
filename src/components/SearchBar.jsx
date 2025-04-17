@@ -16,10 +16,10 @@ const SearchBar = () => {
 
   return (
     <div className="relative">
-      <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500" />
+      <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 dark:text-gray-200 text-gray-500" />
       <input
         type="search"
-        className="pl-10 rounded p-2 text-size11 border-b-thin bg-gray-50 border-gray-300 focus:outline-none"
+        className="pl-10 rounded p-2 text-size11 border-b-thin bg-gray-50 dark:bg-gray-600 dark:text-gray-100 border-gray-300 focus:outline-none"
         placeholder="Rechercher..."
         value={searchQuery}
         onChange={handleSearchChange}

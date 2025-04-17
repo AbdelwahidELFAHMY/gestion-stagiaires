@@ -6,8 +6,8 @@ import AdminSidebar from "./AdminSidebar";
 import Companies from "./partenaires/Companies";
 import StatistiquesSysteme from "./statistiques_system/StatistiquesSysteme";
 import Maintenance from "./maintenance/Maintenance";
-import Parameters from "./Parameters";
 import Logout from "../../components/Logout";
+import Parameters from "./comptes/Parameters";
 
 function DashboardAdmin() {
   const [activeTab, setActiveTab] = useState("dashboard");

@@ -68,7 +68,7 @@ export default function HeaderInfo() {
             {userInfo?.nom} {userInfo?.prenom}
           </span>
           <span className="text-size11 font-semibold dark:text-neutral-400 text-gray-600">
-            StageOnline Administrator
+            StellarStage Administrator
           </span>
         </div>
       </div>

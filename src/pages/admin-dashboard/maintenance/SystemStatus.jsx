@@ -4,7 +4,6 @@ import {
   Wrench,
   Clock,
   CheckCircle,
-  CalendarPlus,
 } from "lucide-react";
 import axiosInstance from "../../../utils/axiosInstance";
 import Skeleton from "../../../components/Skeleton";
@@ -27,16 +26,11 @@ const SystemStatus = () => {
           error
         );
         setStatus({ needsMaintenance: false, urgency: "none" });
-      } finally {
-        setTimeout(() => {
-          setLoading(false);
-        }, 1000); 
       }
+      setLoading(false);
     };
 
     fetchSystemStatus();
-    const interval = setInterval(fetchSystemStatus, 120000);
-    return () => clearInterval(interval);
   }, []);
 
   const analyzeSystemStatus = (data) => {
@@ -175,7 +169,7 @@ const SystemStatus = () => {
           </div>
         </div>
         <div>
-        <div className="flex justify-end mb-4 ">
+          <div className="flex justify-end mb-4 ">
             <MaintenanceScheduler />
           </div>
           <div className="p-5 dark:bg-blue-950 rounded-lg border-thin border-gray-200 bg-blue-50 dark:border-gray-700 animate-fadeIn">

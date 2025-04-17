@@ -11,11 +11,15 @@ import {
   User2,
 } from "lucide-react";
 import GetImageFromURL from "../../utils/getImageFromURL";
+import StagiaireInfosModale from "./StagiaireInfosModale";
 
 export default function DashboardView() {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [stagiaireInfosModale, setStagiaireInfosModale] = useState(false);
+  const [selectedStagiaireUsername, setSelectedStagiaireUsername] =
+    useState(null);
 
   useEffect(() => {
     const fetchProjects = async () => {
@@ -57,6 +61,15 @@ export default function DashboardView() {
     if (progress < 30) return "bg-red-500";
     if (progress < 70) return "bg-amber-400";
     return "bg-emerald-500";
+  };
+
+  const handleCloseModale = () => {
+    setStagiaireInfosModale(false);
+  };
+
+  const handleSelectStagiaire = (stagiaireUsername)=>  {
+    setSelectedStagiaireUsername(stagiaireUsername);
+    setStagiaireInfosModale(true);
   };
 
   if (loading) {
@@ -192,13 +205,12 @@ export default function DashboardView() {
                       <User className="w-4 h-4 mr-2" />
                       Stagiaires ({project.stagiaires.length})
                     </h3>
-                    {/* Grille de stagiaires (2 par ligne) */}
                     <div className="grid grid-cols-2 gap-3 mt-3">
                       {project.stagiaires.map((stagiaire, index) => (
                         <div
                           key={index}
-                          className="flex items-center p-3 bg-gray-50 rounded-lg"
-                        >
+                          className="flex cursor-pointer items-center p-3 bg-gray-50 rounded-lg"
+                          onClick={() => handleSelectStagiaire(stagiaire.username)}                        >
                           {stagiaire.photo ? (
                             <GetImageFromURL
                               logoUrl={`${axiosInstance.defaults.baseURL.replace(
@@ -211,9 +223,9 @@ export default function DashboardView() {
                               alt="photo"
                               className="h-11 w-11 rounded-full border-thin object-cover"
                             />
-                          ) :(
+                          ) : (
                             <div className="p-1 bg-gray-200 border-thin border-gray-300 rounded-full">
-                            <User2 className="h-8 w-8 text-neutral-700" />
+                              <User2 className="h-8 w-8 text-neutral-700" />
                             </div>
                           )}
                           <div className="ml-3 overflow-hidden">
@@ -240,6 +252,12 @@ export default function DashboardView() {
             </div>
           ))}
         </div>
+      )}
+      {stagiaireInfosModale && (
+        <StagiaireInfosModale
+          onClose={handleCloseModale}
+          stagiaireUsername={selectedStagiaireUsername}
+        />
       )}
     </div>
   );

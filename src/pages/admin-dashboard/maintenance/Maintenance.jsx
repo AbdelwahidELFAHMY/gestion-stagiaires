@@ -1,7 +1,6 @@
 import HttpMetricsChart from "./HttpMetricsChart";
 import SystemStatus from "./SystemStatus";
 
-// Dans Maintenance.jsx
 export default function Maintenance() {
   return (
     <div className="grid grid-rows-[1fr_2fr] h-screen gap-4 overflow-visible">
