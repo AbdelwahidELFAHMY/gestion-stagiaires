@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import GetImageFromURL from "../../../utils/getImageFromURL";
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
+import axios from "axios";
 
 const EvaluationModal = ({ visible, stagiaireUsername, stageId, onClose }) => {
   const [stageData, setStageData] = useState(null);
@@ -245,42 +246,49 @@ const EvaluationModal = ({ visible, stagiaireUsername, stageId, onClose }) => {
         `evaluation_${stageId}_${stagiaireUsername}.pdf`
       );
 
-      // 3. Options de requête avec timeout
-      const config = {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-        timeout: 30000, // 30 secondes timeout
-        onUploadProgress: (progressEvent) => {
-          const percentCompleted = Math.round(
-            (progressEvent.loaded * 100) / progressEvent.total
-          );
-          console.log(`Upload progress: ${percentCompleted}%`);
-        },
-      };
+      // 3. Envoyer la requête - NE PAS spécifier Content-Type pour FormData
+      // axios le fera automatiquement avec la bonne boundary
+      
+        const accessToken = localStorage.getItem("accessToken");
 
-      // 4. Envoyer la requête
-      const response = await axiosInstance.post(
-        `/encadrants/evaluation/${stagiaireUsername}/${stageId}`,
-        formData,
-        config
-      );
+      const response = await axios.post(
+    `http://localhost:8080/api/encadrants/evaluation/${stagiaireUsername}/${stageId}`,
+    formData,
+    {
+      headers: {
+        'Authorization': `Bearer ${accessToken}`,
+      },
+      timeout: 60000,
+    }
+  );
 
+      console.log("Réponse serveur:", response.data);
       toast.success("Évaluation enregistrée avec succès");
+      
+      // Ouvrir le PDF dans un nouvel onglet
       const pdfUrl = URL.createObjectURL(pdfBlob);
       window.open(pdfUrl, "_blank");
+      
+      // Nettoyer l'URL
+      setTimeout(() => URL.revokeObjectURL(pdfUrl), 100);
+      
       onClose();
     } catch (error) {
       console.error("Erreur détaillée:", {
         message: error.message,
         response: error.response?.data,
+        status: error.response?.status,
         stack: error.stack,
       });
 
-      toast.error(
-        error.response?.data?.message ||
-          "Erreur lors de l'enregistrement. Veuillez réessayer."
-      );
+      if (error.response?.status === 401 || error.response?.status === 403) {
+        toast.error("Session expirée. Veuillez vous reconnecter.");
+      } else {
+        toast.error(
+          error.response?.data?.message ||
+            "Erreur lors de l'enregistrement. Veuillez réessayer."
+        );
+      }
     } finally {
       setIsSubmitting(false);
     }
@@ -567,7 +575,6 @@ const EvaluationModal = ({ visible, stagiaireUsername, stageId, onClose }) => {
           >
             {isSubmitting ? (
               <div className="flex items-center space-x-2">
-                {/* Spinner amélioré avec animation */}
                 <div className="animate-spin h-5 w-5 border-2 border-white border-t-transparent rounded-full"></div>
                 <span>Patientez...</span>
               </div>

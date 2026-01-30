@@ -34,6 +34,7 @@ const Login = () => {
       else if (roles.includes("RH")) setRedirectPath("/dashboard-rh");
       else if (roles.includes("STAGIAIRE")) setRedirectPath("/dashboard-stagiaire");
       else if (roles.includes("ENCADRANT")) setRedirectPath("/dashboard-encadrant");
+      else if (roles.includes("CHEF_DEPARTEMENT")) setRedirectPath("/dashboard-chef-departement");
       else setRedirectPath("/login");
     } catch (error) {
       console.error("Login error:", error.response?.data || error.message);

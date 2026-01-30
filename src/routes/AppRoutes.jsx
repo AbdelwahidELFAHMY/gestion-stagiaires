@@ -31,6 +31,9 @@ const AppRoutes = () => {
         <Route element={<ProtectedRoute allowedRoles={["ENCADRANT"]} />}>
           <Route path="/dashboard-encadrant" element={<DashboardEncadrant />} />
         </Route>
+        <Route element={<ProtectedRoute allowedRoles={["CHEF_DEPARTEMENT"]} />}>
+          <Route path="/dashboard-chef-" element={<DashboardEncadrant />} />
+        </Route>
       </Routes>
     </Router>
   );

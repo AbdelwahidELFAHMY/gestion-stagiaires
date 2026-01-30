@@ -52,8 +52,8 @@ const Footer = () => {
               >
                 <GraduationCap size={24} className="text-gray-900" />
               </motion.div>
-              <span className="text-xl font-bold bg-gradient-to-r from-blue-400 to-gray-400 bg-clip-text text-transparent">
-                StellarStage
+              <span className="text-xl font-bold bg-gradient-to-r from-blue-400 to-gray-400 bg-clip-text text-transparent" style={{ fontFamily: "'Krona One', 'sans-serif'", letterSpacing: '0.1em' }}>
+              StageLik
               </span>
             </div>
             <p className="text-gray-400 text-sm leading-relaxed">

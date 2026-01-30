@@ -189,7 +189,7 @@ const HttpMetricsChart = () => {
       {/* Conteneur principal en grid */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Premier graphique (BarChart) */}
-        <div className="h-96 bg-gray-50 dark:bg-gray-700 border border-gray-100 dark:border-gray-500 p-4 rounded-lg">
+        <div className="h-80 bg-gray-50 dark:bg-gray-700 border border-gray-100 dark:border-gray-500 p-4 rounded-lg">
           <div className="text-size15 font-semibold text-gray-800 dark:text-gray-200 mb-4 flex justify-between items-center">
             <span>Historique de Statut des requêtes HTTP par jour</span>
             <div className="flex space-x-4">
@@ -229,7 +229,7 @@ const HttpMetricsChart = () => {
         </div>
 
         {/* Deuxième graphique (PieChart) */}
-        <div className="h-96 bg-gray-50 dark:bg-gray-700 border border-gray-100 dark:border-gray-500 p-4 rounded-lg">
+        <div className="h-80 bg-gray-50 dark:bg-gray-700 border border-gray-100 dark:border-gray-500 p-4 rounded-lg">
           <h3 className="text-size15 text-center font-semibold text-gray-800 dark:text-gray-200 mb-4">
             Répartition des statuts HTTP
           </h3>

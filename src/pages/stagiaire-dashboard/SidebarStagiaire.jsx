@@ -102,7 +102,7 @@ const SidebarStagiaire = ({ setActiveComponent }) => {
         duration: 0.8,
         delay: isOpen ? 0 : 0.15,
       }}
-      className="h-screen bg-white shadow-lg relative border-r border-gray-200"
+      className=" h-screen bg-white shadow-lg relative border-r border-gray-200"
     >
       <motion.button
         onClick={toggleSidebar}

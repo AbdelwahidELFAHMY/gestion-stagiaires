@@ -155,14 +155,17 @@ const Livrables = () => {
                           </div>
                         </div>
                         <button
-                          onClick={() =>
-                            handleDownload(doc.path, doc.nom + `{doc.type.includes("pdf")?".pdf":doc.type.includes("word")?".docx":".txt"}`)
-                          }
-                          className="cursor-pointer text-size13 text-blue-700 hover:text-blue-800 border border-blue-500 hover:border-blue-700 px-3 py-1 rounded flex items-center gap-1 transition-colors"
-                        >
-                          <span>⬇️</span>
-                          Télécharger
-                        </button>
+  onClick={() =>
+    handleDownload(
+      doc.path, 
+      doc.nom + `${doc.type.includes("pdf") ? ".pdf" : doc.type.includes("word") ? ".docx" : ".txt"}`
+    )
+  }
+  className="cursor-pointer text-size13 text-blue-700 hover:text-blue-800 border border-blue-500 hover:border-blue-700 px-3 py-1 rounded flex items-center gap-1 transition-colors"
+>
+  <span>⬇️</span>
+  Télécharger
+</button>
                         
                       </div>
                     </div>

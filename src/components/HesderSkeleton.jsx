@@ -1,6 +1,6 @@
 import Skeleton from 'react-loading-skeleton';
 
-export default function HesderSkeleton() {
+export default function HeaderSkeleton() {
     return (
       <header className="flex justify-between items-center h-16 bg-white px-6 py-4 border-b border-gray-200">
   

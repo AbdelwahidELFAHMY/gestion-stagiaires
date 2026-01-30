@@ -49,7 +49,7 @@ export default function Compte() {
   }
 
   return (
-    <div className="max-w-6xl h-full overflow-y-auto scrollbar-thin mx-auto p-6">
+    <div className="max-w-6xl mt-2 h-full overflow-y-auto scrollbar-thin mx-auto p-6">
       <div className="flex mb-3 justify-between items-center border-b border-gray-200 pb-2">
         <h1 className="text-size14 font-semibold text-gray-800 flex items-center">
           <UserCog className="h-6 w-6 text-blue-700 mr-3 " />

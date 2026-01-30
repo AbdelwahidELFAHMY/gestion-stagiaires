@@ -1,5 +1,4 @@
-import React from "react";
-import { FileText } from "lucide-react";
+
 import { handleDownload } from "../../../utils/handleDownloadFile";
 
 const DocumentTable = ({ documents, onDelete }) => {

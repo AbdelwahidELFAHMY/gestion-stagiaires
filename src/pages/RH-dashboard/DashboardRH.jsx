@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { default as React, useState } from "react";
 
-import CompaniesContent from "./CompaniesContent";
+import { Toaster } from "react-hot-toast";
+import CompaniesContent from "./Company/CompaniesContent";
+
 import Sidebar from "./components/SideBar";
 import DashboardContent from "./DashboardContent";
-import DepartmentsContent from "./DepartmentsContent";
-import EmployeesContent from "./EmployeesContent";
-import InternsContent from "./InternsContent";
+import DepartmentsContent from "./Departments/DepartmentsContent";
+import EmployeesContent from "./Employee/EmployeesContent";
+import InternsContent from "./Intern/InternsContent";
 import SubjectsContent from "./SubjectsContent";
 
 function DashboardRH() {
@@ -44,6 +46,7 @@ function DashboardRH() {
         </header>
         {renderContent()}
       </main>
+      <Toaster position="top-right" />
     </div>
   );
 }

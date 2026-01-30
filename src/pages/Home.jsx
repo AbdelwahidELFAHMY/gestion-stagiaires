@@ -174,7 +174,6 @@ const WaveIllustration = () => (
 );
 
 
-
 const AnimatedButton = ({ href, primary, children }) => (
   <motion.a
     href={href}
@@ -359,7 +358,7 @@ function Home() {
         </div>
         <WaveIllustration />
       </div>
-      <section className="py-20 bg-gradient-to-br from-blue-950 via-indigo-950 to-violet-950">
+      <section className="py-20 bg-gradient-to-br from-blue-950 via-indigo-950 to-indigo-950">
         <div className="max-w-screen-xl mx-auto px-6 sm:px-10">
           <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
             <motion.div
@@ -369,8 +368,8 @@ function Home() {
               transition={{ duration: 0.8 }}
               viewport={{ once: true, margin: "0px 0px -100px 0px" }}
             >
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-                Une interface conçue pour l'efficacité
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-100 mb-6">
+                Une interface fluide et flexible
               </h2>
               <p className="text-lg text-gray-300 mb-8">
                 Notre tableau de bord intuitif vous donne un contrôle total sur 
@@ -419,7 +418,7 @@ function Home() {
       </section>
 
       
-      <section className=" bg-gradient-to-br from-indigo-950 to-blue-950">
+      <section className="py-20 bg-gradient-to-br from-blue-950 via-indigo-950 to-indigo-950">
 
       <div id="features" className="max-w-screen-xl mx-auto px-6 sm:px-10 lg:px-10 py-14">
         <motion.div
@@ -455,7 +454,8 @@ function Home() {
 
       
       {/* Footer */}
-      <section className="bg-gradient-to-t from-indigo-950 to-blue-950">  <Footer/>
+      <section className="bg-gradient-to-t from-indigo-950 to-blue-950">  
+        <Footer/>
 </section>
 
 

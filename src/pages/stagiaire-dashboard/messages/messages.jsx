@@ -3,7 +3,7 @@ import { AiOutlineSend, AiOutlineComment } from "react-icons/ai";
 import { User2 } from "lucide-react";
 import { FiAlertCircle } from "react-icons/fi";
 import Skeleton from "react-loading-skeleton";
-import GetImageFromURL from "../../../utils/getImageFromURL";
+import GetImageFromURL from "../../../utils/getImageFromURL.jsx";
 import { getUsernameFromToken } from "../../../utils/getUsernameFromToken";
 import axiosInstance from "../../../utils/axiosInstance";
 import { addCommentaire, fetchCommentaires } from "../../../stores/commentaires_slices/commentaireSlice";
